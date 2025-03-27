@@ -3,7 +3,7 @@ Hello! I'm Sari (@saririvaii), and this space serves as a compilation of the var
 
 ### 📫 Contact Information
 Email: sarii.rivaii@gmail.com \
-Linkedin: www.linkedin.com/in/sari-nurfauziyyah
+Linkedin: www.linkedin.com/in/saririvai
 
 Thank you for visiting, and I hope you enjoy exploring my projects! If you have any questions or would like to connect, feel free to reach out.
 
