@@ -1,8 +1,6 @@
 ### Welcome to @saririvaii's Project Showcase! 👋
 Hello! I'm Sari (@saririvaii), and this space serves as a compilation of the various projects I've undertaken—an ongoing reflection of my growth and achievements. 
 
-👩‍🎓 Currently pursuing my undergraduate degree at the University of Melbourne, I'm majoring in Computing and minoring in User Experience Design within the Bachelor of Design program.
-
 ### 📫 Contact Information
 Email: sarii.rivaii@gmail.com \
 Linkedin: www.linkedin.com/in/sari-nurfauziyyah
