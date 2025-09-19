@@ -5,11 +5,6 @@ interface HeroSectionProps {
   description: string
   imageUrl?: string | null
   imageAlt: string
-  author: {
-    name: string
-    role: string
-    avatar?: string | null
-  }
 }
 
 export default function HeroSection({ 
@@ -17,7 +12,6 @@ export default function HeroSection({
   description, 
   imageUrl, 
   imageAlt, 
-  author 
 }: HeroSectionProps) {
   return (
     <div>
@@ -53,29 +47,7 @@ export default function HeroSection({
                 <p className="mt-2 lg:mt-4 text-balance lg:text-lg lg:text-muted-foreground">
                   {description}
                 </p>
-                <div className="flex items-center gap-x-3 group mt-2">
-                  {author.avatar ? (
-                    <Image
-                      alt={author.name}
-                      src={author.avatar}
-                      width={32}
-                      height={32}
-                      className="data-[loading]:opacity-0 data-[loaded]:opacity-100 size-8 flex-none rounded-full bg-zinc-100 dark:bg-zinc-800 grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  ) : (
-                    <div className="size-8 flex-none rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center">
-                      <span className="text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                        {author.name.charAt(0)}
-                      </span>
-                    </div>
-                  )}
-                  <span className="text-sm font-medium text-zinc-800 dark:text-zinc-200 group-hover:text-black dark:group-hover:text-white transition-colors duration-200">
-                    {author.name}
-                    <span className="block text-xs text-zinc-500 dark:text-zinc-400 font-normal mt-0.5">
-                      {author.role}
-                    </span>
-                  </span>
-                </div>
+                
               </div>
             </div>
           </div>

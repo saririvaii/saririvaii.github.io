@@ -5,8 +5,25 @@ import Image from 'next/image'
 import { useProjects } from '@/hooks/useSanityData'
 import { urlFor } from '@/lib/sanity'
 
+interface Project {
+  title: string
+  description: string
+  category: string
+  publishedAt: string
+  slug: {
+    current: string
+  }
+  featuredImage?: {
+    alt?: string
+    asset: {
+      _ref: string
+    }
+  }
+  technologies?: string[]
+}
+
 export default function FeaturedProjects() {
-  const { data: projects, loading } = useProjects()
+  const { data: projects, loading } = useProjects() as { data: Project[] | null, loading: boolean }
 
   if (loading) {
     return (
@@ -16,20 +33,7 @@ export default function FeaturedProjects() {
             <div className="animate-pulse">
               <div className="h-10 bg-zinc-200 dark:bg-zinc-700 rounded w-80 mb-12"></div>
               <div className="space-y-8">
-                {[...Array(3)].map((_, i) => (
-                  <div key={i} className="flex gap-8">
-                    <div className="w-1/3 aspect-video bg-zinc-200 dark:bg-zinc-700 rounded"></div>
-                    <div className="w-px bg-zinc-200 dark:bg-zinc-700"></div>
-                    <div className="flex-1">
-                      <div className="h-6 bg-zinc-200 dark:bg-zinc-700 rounded mb-2"></div>
-                      <div className="h-4 bg-zinc-200 dark:bg-zinc-700 rounded mb-4"></div>
-                      <div className="flex gap-2">
-                        <div className="h-6 bg-zinc-200 dark:bg-zinc-700 rounded w-16"></div>
-                        <div className="h-6 bg-zinc-200 dark:bg-zinc-700 rounded w-20"></div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                
               </div>
             </div>
           </div>
@@ -42,52 +46,50 @@ export default function FeaturedProjects() {
     <section className="container">
       <div className="border-x border-zinc-200 dark:border-zinc-800 relative py-16">
         <div className="px-4">
-          <h2 className="text-3xl lg:text-4xl font-bold text-zinc-900 dark:text-white mb-12">
+          <h2 className="tracking-tight text-zinc-700 dark:text-white/50 mb-12 text-center">
             All Projects
           </h2>
           <div className="space-y-8">
             {projects?.map((project: any, index: number) => (
-              <Link key={index} href={`/blog/${project.slug?.current}`} className="group block">
-                <div className="flex gap-8 items-center">
-                  <div className="w-1/3 aspect-video bg-zinc-100 dark:bg-zinc-800 relative overflow-hidden rounded">
+              <Link 
+                key={index} 
+                href={`/blog/${project.slug?.current}`} 
+                className="group block animate-fade-in-up"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <div className="flex gap-8 items-center p-6 rounded-xl hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-all duration-500 hover:shadow-lg hover:scale-[1.02]">
+                  <div className="w-1/2 aspect-video bg-zinc-100 dark:bg-zinc-800 relative overflow-hidden rounded-lg group-hover:rounded-xl transition-all duration-300">
                     {project.featuredImage ? (
                       <Image
                         src={urlFor(project.featuredImage).width(600).height(400).url()}
                         alt={project.featuredImage.alt || project.title}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                       />
                     ) : (
-                      <div className="w-full h-full bg-zinc-200 dark:bg-zinc-700"></div>
+                      <div className="w-full h-full bg-zinc-200 dark:bg-zinc-700 group-hover:bg-zinc-300 dark:group-hover:bg-zinc-600 transition-colors duration-300"></div>
                     )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <div className="w-px h-24 bg-zinc-200 dark:bg-zinc-700"></div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs rounded">
-                        {project.category}
-                      </span>
-                      <span className="text-sm text-zinc-500 dark:text-zinc-400">
-                        {project.publishedAt && new Date(project.publishedAt).toLocaleDateString()}
-                      </span>
-                    </div>
-                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mb-3 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors">
+                  <div className="w-1/2 flex flex-col items-start text-center">
+                    <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mb-3 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-all duration-300">
                       {project.title}
                     </h3>
-                    <p className="text-zinc-600 dark:text-zinc-400 mb-4 line-clamp-2">
+                    <p className="text-zinc-600 dark:text-zinc-400 mb-4 line-clamp-2 text-left w-full group-hover:text-zinc-500 dark:group-hover:text-zinc-500 transition-colors duration-300">
                       {project.description}
                     </p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 justify-center">
                       {project.technologies?.slice(0, 4).map((tech: string, tagIndex: number) => (
                         <span 
                           key={tagIndex}
-                          className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs rounded"
+                          className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs rounded-full group-hover:bg-zinc-200 dark:group-hover:bg-zinc-700 group-hover:scale-105 transition-all duration-300"
+                          style={{ animationDelay: `${tagIndex * 100}ms` }}
                         >
                           {tech}
                         </span>
                       ))}
                       {project.technologies?.length > 4 && (
-                        <span className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs rounded">
+                        <span className="px-2 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-xs rounded-full group-hover:bg-zinc-200 dark:group-hover:bg-zinc-700 group-hover:scale-105 transition-all duration-300">
                           +{project.technologies.length - 4} more
                         </span>
                       )}
@@ -98,7 +100,7 @@ export default function FeaturedProjects() {
             ))}
           </div>
         </div>
-      </div>
+        </div>
     </section>
   )
 }

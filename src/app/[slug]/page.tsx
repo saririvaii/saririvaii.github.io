@@ -71,7 +71,6 @@ export default function ProjectPost({ params }: ProjectPostProps) {
 
   const breadcrumbItems = [
     { label: 'Home', href: '/' },
-    { label: 'Projects', href: '/projects' },
     { label: project.title }
   ]
 

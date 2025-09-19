@@ -2,8 +2,19 @@
 
 import { useSkills } from '@/hooks/useSanityData'
 
+interface Skill {
+  name: string
+  level?: string
+  icon?: string
+}
+
+interface SkillCategory {
+  name: string
+  skills: Skill[]
+}
+
 export default function Skills() {
-  const { data: skills, loading } = useSkills()
+  const { data: skills, loading } = useSkills() as { data: SkillCategory[] | null, loading: boolean }
 
   if (loading) {
     return (
@@ -38,20 +49,25 @@ export default function Skills() {
     <section className="container">
       <div className="border-x border-zinc-200 dark:border-zinc-800 relative py-16">
         <div className="px-4">
-          <h2 className="text-3xl lg:text-4xl font-bold text-zinc-900 dark:text-white mb-12 text-center">
+          <h2 className="tracking-tight text-zinc-700 dark:text-white/50 mb-12 text-center">
             Technologies & Skills
           </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {skillsByCategory.map((category: any, index: number) => (
-                  <div key={index} className="text-center">
-                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-4">
+                  <div 
+                    key={index} 
+                    className="text-center animate-fade-in-up hover:scale-105 transition-all duration-300"
+                    style={{ animationDelay: `${index * 200}ms` }}
+                  >
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-4 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-colors duration-300">
                       {category.name}
                     </h3>
                     <div className="flex flex-wrap gap-2 justify-center">
                       {category.skills?.map((skill: any, skillIndex: number) => (
                         <span 
                           key={skillIndex}
-                          className="px-3 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm rounded-full"
+                          className="px-3 py-1 bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-sm rounded-full hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:scale-110 transition-all duration-300 cursor-default"
+                          style={{ animationDelay: `${(index * 200) + (skillIndex * 50)}ms` }}
                         >
                           {skill.name}
                         </span>

@@ -13,7 +13,7 @@ export default function Navigation() {
     <nav className="relative h-full flex justify-between">
       <div className="w-[215px] lg:border-e h-full border-zinc-200 dark:border-zinc-800">
         <Link className="h-full items-center px-4 inline-flex group transition-colors lg:hover:bg-primary/5" href="/">
-          <Logo />
+          <Logo className="w-24 h-10" />
         </Link>
       </div>
       
@@ -27,7 +27,7 @@ export default function Navigation() {
       </div>
       
       <div className="w-[215px] border-s border-zinc-200 dark:border-zinc-800 flex md:block">
-        <Link className="hidden lg:flex h-full w-full items-center justify-center group transition-colors hover:bg-primary/5" href="/contact">
+        <Link className="hidden lg:flex h-full w-full items-center justify-center group transition-colors hover:bg-primary/5" href="mailto:bysaririvai@gmail.com">
           <span className="group font-medium flex items-center gap-4">
             Get in touch
             <AnimatedIcon />
