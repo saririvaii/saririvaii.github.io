@@ -21,21 +21,6 @@ export default function Navigation() {
         <nav aria-label="Main" className="relative z-10 max-w-max flex-1 items-center justify-center hidden lg:flex h-full">
           <div style={{ position: 'relative' }}>
             <ul className="group flex flex-1 list-none items-center justify-center h-full">
-              <li className="flex h-16">
-                <Link className="h-full flex group inline-flex h-full w-max items-center justify-center bg-background px-5 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50" href="/case-study">
-                  Case Studies
-                </Link>
-              </li>
-              <li className="flex h-16">
-                <button className="group inline-flex h-full w-max items-center justify-center rounded-none bg-background px-5 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 group">
-                  Services <ChevronDown className="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180" />
-                </button>
-              </li>
-              <li className="flex h-16">
-                <Link className="h-full flex group inline-flex h-full w-max items-center justify-center bg-background px-5 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50" href="/blog">
-                  Blog
-                </Link>
-              </li>
             </ul>
           </div>
         </nav>

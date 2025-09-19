@@ -1,5 +1,5 @@
 {
-	"name": "invictus",
+	"name": "saririvaii",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -9,12 +9,17 @@
 		"lint": "next lint",
 		"sanity:extract": "sanity schema extract",
 		"sanity:typegen": "sanity typegen generate",
-		"sanity:codegen": "npm run sanity:extract && npm run sanity:typegen"
+		"sanity:codegen": "npm run sanity:extract && npm run sanity:typegen",
+		"sanity:deploy": "sanity deploy"
 	},
 	"dependencies": {
+		"@next/font": "^14.2.15",
 		"@next/third-parties": "^15.4.2",
 		"@portabletext/react": "^3.2.1",
-		"@sanity/vision": "^3.84.0",
+		"@sanity/client": "^7.11.2",
+		"@sanity/code-input": "^6.0.1",
+		"@sanity/image-url": "^1.2.0",
+		"@sanity/vision": "^3.99.0",
 		"@splidejs/react-splide": "^0.7.12",
 		"@splidejs/splide-extension-auto-scroll": "^0.5.3",
 		"@superside-oss/sanity-plugin-copy-paste": "^1.0.3",
@@ -29,7 +34,7 @@
 		"lucide-react": "^0.503.0",
 		"next": "15.1.4",
 		"next-hubspot": "^2.0.0",
-		"next-sanity": "^9.10.2",
+		"next-sanity": "^9.12.3",
 		"puppeteer": "^24.11.2",
 		"react": "^19.0.0",
 		"react-calendly": "^4.4.0",
