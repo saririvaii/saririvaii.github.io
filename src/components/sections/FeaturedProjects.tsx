@@ -47,13 +47,13 @@ export default function FeaturedProjects() {
       <div className="border-x border-zinc-200 dark:border-zinc-800 relative py-16">
         <div className="px-4">
           <h2 className="tracking-tight text-zinc-700 dark:text-white/50 mb-12 text-center">
-            All Projects
+            Projects
           </h2>
           <div className="space-y-8">
             {projects?.map((project: any, index: number) => (
               <Link 
                 key={index} 
-                href={`/blog/${project.slug?.current}`} 
+                href={`/${project.slug?.current}`} 
                 className="group block animate-fade-in-up"
                 style={{ animationDelay: `${index * 150}ms` }}
               >
@@ -71,14 +71,14 @@ export default function FeaturedProjects() {
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <div className="w-1/2 flex flex-col items-start text-center">
+                  <div className="w-1/2 flex flex-col items-start">
                     <h3 className="text-2xl font-semibold text-zinc-900 dark:text-white mb-3 group-hover:text-zinc-700 dark:group-hover:text-zinc-300 transition-all duration-300">
                       {project.title}
                     </h3>
-                    <p className="text-zinc-600 dark:text-zinc-400 mb-4 line-clamp-2 text-left w-full group-hover:text-zinc-500 dark:group-hover:text-zinc-500 transition-colors duration-300">
+                    <p className="text-zinc-600 dark:text-zinc-400 mb-4 text-left w-full group-hover:text-zinc-500 dark:group-hover:text-zinc-500 transition-colors duration-300">
                       {project.description}
                     </p>
-                    <div className="flex flex-wrap gap-2 justify-center">
+                    <div className="flex flex-wrap gap-3">
                       {project.technologies?.slice(0, 4).map((tech: string, tagIndex: number) => (
                         <span 
                           key={tagIndex}

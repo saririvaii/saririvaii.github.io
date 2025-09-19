@@ -109,8 +109,20 @@ export default function ProjectPost({ params }: ProjectPostProps) {
       
       return html
     } else if (block._type === 'image') {
-      const imageUrl = urlFor(block).width(1200).height(600).url()
-      return `<div class="w-full -mx-4 sm:-mx-6 lg:-mx-8 xl:-mx-16"><div class="relative w-full"><img width="1200" height="600" loading="lazy" alt="${block.alt || ''}" class="w-full h-auto object-cover transition-opacity duration-300 hover:opacity-90" src="${imageUrl}"></div></div>`
+      const imageUrl = urlFor(block).width(1200).url()
+      return `<div class="w-full my-6"><img width="1200" height="600" loading="lazy" alt="${block.alt || ''}" class="w-full h-auto object-contain rounded-lg transition-opacity duration-300 hover:opacity-90" src="${imageUrl}"></div>`
+    } else if (block._type === 'youtubeVideo') {
+      // Extract video ID from YouTube URL
+      const getYouTubeId = (url: string) => {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+        const match = url.match(regExp)
+        return (match && match[2].length === 11) ? match[2] : null
+      }
+      
+      const videoId = getYouTubeId(block.url)
+      if (!videoId) return ''
+      
+      return `<div class="w-full my-6"><div class="relative w-full aspect-video rounded-lg overflow-hidden"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}" title="${block.title || 'YouTube video'}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg"></iframe></div></div>`
     } else if (block._type === 'code') {
       return `<pre class="rounded-md border border-white/10 bg-opacity-5 p-4 text-sm overflow-x-auto"><code class="language-${block.language || 'typescript'}">${block.code}</code></pre>`
     }
