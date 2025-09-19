@@ -58,6 +58,7 @@ export const queries = {
     title,
     slug,
     description,
+    intro,
     content,
     featuredImage,
     gallery,

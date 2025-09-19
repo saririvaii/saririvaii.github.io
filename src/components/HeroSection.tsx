@@ -3,6 +3,7 @@ import Image from 'next/image'
 interface HeroSectionProps {
   title: string
   description: string
+  intro?: string
   imageUrl?: string | null
   imageAlt: string
 }
@@ -10,6 +11,7 @@ interface HeroSectionProps {
 export default function HeroSection({ 
   title, 
   description, 
+  intro,
   imageUrl, 
   imageAlt, 
 }: HeroSectionProps) {
@@ -45,7 +47,7 @@ export default function HeroSection({
                   {title}
                 </h1>
                 <p className="mt-2 lg:mt-4 text-balance lg:text-muted-foreground">
-                  {description}
+                  {intro}
                 </p>
                 
               </div>

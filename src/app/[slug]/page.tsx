@@ -17,6 +17,7 @@ interface ProjectPostProps {
 interface ProjectData {
   title: string
   description: string
+  intro?: string
   featuredImage?: {
     alt?: string
     asset: {
@@ -77,6 +78,7 @@ export default function ProjectPost({ params }: ProjectPostProps) {
   const heroData = {
     title: project.title,
     description: project.description,
+    intro: project.intro,
     imageUrl: project.featuredImage ? urlFor(project.featuredImage).width(1200).height(630).url() : null,
     imageAlt: project.featuredImage?.alt || project.title,
   }
