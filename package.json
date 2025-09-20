@@ -24,7 +24,6 @@
 		"@sanity/vision": "^3.99.0",
 		"@splidejs/react-splide": "^0.7.12",
 		"@splidejs/splide-extension-auto-scroll": "^0.5.3",
-		"@superside-oss/sanity-plugin-copy-paste": "^1.0.3",
 		"@tailwindcss/typography": "^0.5.16",
 		"autoprefixer": "^10.4.21",
 		"clsx": "^2.1.1",
