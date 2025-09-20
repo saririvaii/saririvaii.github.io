@@ -7,6 +7,8 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"export": "next build && next export",
+		"deploy": "npm run build && touch out/.nojekyll",
 		"sanity:extract": "sanity schema extract",
 		"sanity:typegen": "sanity typegen generate",
 		"sanity:codegen": "npm run sanity:extract && npm run sanity:typegen",
