@@ -19,12 +19,9 @@
 
 <h3 align="left">⚒️ Languages - Frameworks - Tools ⚒️</h3>
 <a href="https://skillicons.dev">
-  <img src="https://skillicons.dev/icons?i=js,ts,html,css,sass,react,nextjs,tailwind,styledcomponents,bootstrap"/><br/>
-  <img src="https://skillicons.dev/icons?i=nodejs,express,firebase,graphql,postgres,mysql,mongodb"/><br/>
-  <img src="https://skillicons.dev/icons?i=docker,aws,vercel,netlify,git,github,figma,vscode"/><br/>
-  <img src="https://skillicons.dev/icons?i=sanity,prisma,supabase,stripe,postman"/><br/>
+  <img src="https://skillicons.dev/icons?i=js,ts,html,css,react,nextjs,tailwind,styledcomponents,bootstrap,nodejs,graphql,postgres,mysql,mongodb,aws,vercel,git,github,figma,vscode,sanity,supabase,stripe,postman" width="100%"/>
 </a>
-...and more
+...and always learning more
 
 <h1/>
 
