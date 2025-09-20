@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { ExternalLink, Github } from 'lucide-react'
 
 interface HeroSectionProps {
   title: string
@@ -6,6 +7,8 @@ interface HeroSectionProps {
   intro?: string
   imageUrl?: string | null
   imageAlt: string
+  liveUrl?: string
+  githubUrl?: string
 }
 
 export default function HeroSection({ 
@@ -13,7 +16,9 @@ export default function HeroSection({
   description, 
   intro,
   imageUrl, 
-  imageAlt, 
+  imageAlt,
+  liveUrl,
+  githubUrl,
 }: HeroSectionProps) {
   return (
     <div>
@@ -50,6 +55,33 @@ export default function HeroSection({
                   {intro}
                 </p>
                 
+                {/* Action Links */}
+                {(liveUrl || githubUrl) && (
+                  <div className="flex gap-3 mt-6">
+                    {liveUrl && (
+                      <a
+                        href={liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 text-sm font-medium rounded-lg hover:bg-zinc-800 dark:hover:bg-zinc-100 transition-all duration-300 hover:scale-105"
+                      >
+                        <ExternalLink size={18} />
+                        View Live Site
+                      </a>
+                    )}
+                    {githubUrl && (
+                      <a
+                        href={githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 border border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-300 text-sm font-medium rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-all duration-300 hover:scale-105"
+                      >
+                        <Github size={18} />
+                        View Code
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>

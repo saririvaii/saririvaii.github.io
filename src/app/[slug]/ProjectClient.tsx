@@ -1,6 +1,5 @@
 'use client'
 
-import { use } from 'react'
 import Header from '@/components/layout/Header'
 import Breadcrumb from '@/components/Breadcrumb'
 import HeroSection from '@/components/HeroSection'
@@ -21,6 +20,8 @@ interface ProjectData {
   slug?: {
     current: string
   }
+  liveUrl?: string
+  githubUrl?: string
 }
 
 interface ProjectClientProps {
@@ -59,6 +60,8 @@ export default function ProjectClient({ project }: ProjectClientProps) {
     intro: project.intro,
     imageUrl: project.featuredImage ? urlFor(project.featuredImage).width(1200).height(630).url() : null,
     imageAlt: project.featuredImage?.alt || project.title,
+    liveUrl: project.liveUrl,
+    githubUrl: project.githubUrl,
   }
 
   // Convert Sanity content to HTML string for ArticleContent component

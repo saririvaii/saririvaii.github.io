@@ -51,7 +51,7 @@ export default function Hero() {
 
   return (
     <section className="container">
-      <div className="border-x border-zinc-200 dark:border-zinc-800 relative pt-16 pb-16 md:pb-0">
+      <div className="border-x border-zinc-200 dark:border-zinc-800 relative pt-16 pb-16 lg:pb-0">
         <div className="absolute inset-0 bg-dot-zinc-300 dark:bg-dot-zinc-700 [mask-image:linear-gradient(to_bottom_right,black_20%,transparent_30%,transparent_70%,black_80%)] z-[-1] opacity-30"></div>
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 px-4">
           {/* Left side - Content */}
