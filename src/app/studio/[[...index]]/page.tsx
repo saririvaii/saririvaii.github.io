@@ -1,8 +1,13 @@
-'use client'
+import StudioClient from './StudioClient'
 
-import { NextStudio } from 'next-sanity/studio'
-import config from '../../../../sanity.config'
+// Generate static params for studio routes
+export async function generateStaticParams() {
+  return [
+    { index: [] },
+    { index: ['index'] }
+  ]
+}
 
 export default function StudioPage() {
-  return <NextStudio config={config} />
+  return <StudioClient />
 }
