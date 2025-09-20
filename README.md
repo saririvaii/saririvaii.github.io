@@ -1,24 +1,30 @@
-### Welcome to @saririvaii's Project Showcase! 👋
-Hello! I'm Sari (@saririvaii), and this space serves as a compilation of the various projects I've undertaken—an ongoing reflection of my growth and achievements. 
+<div align="center">
+  <img src="https://komarev.com/ghpvc/?username=saririvai&label=Profile%20views&color=e91e63&style=flat" alt="saririvai" />
+</div>
 
-### 📫 Contact Information
-Email: sarii.rivaii@gmail.com \
-Linkedin: www.linkedin.com/in/saririvai
+<h1 align="center">Heya, I'm Sari Rivai 🙋🏻‍♀️</h1>
+<h3 align="center">Passionate full-stack developer crafting modern web experiences with Next.js, React, and cutting-edge technologies.</h3>
 
-Thank you for visiting, and I hope you enjoy exploring my projects! If you have any questions or would like to connect, feel free to reach out.
+- I'm currently Experimenting with ways to use embeddings to enhance user experiences, with a playful focus on the culinary world
 
-Happy coding! 🚀
-<!--
-**saririvaii/saririvaii** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+- Passionate about the intersection of web development, user experience design, and emerging AI!
 
-Here are some ideas to get you started:
+<div align="center">
+  <a href="mailto:bysaririvai@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Gmail-FF69B4?style=for-the-badge&logo=gmail&logoColor=white"/></a>
+  <a href="https://www.linkedin.com/in/saririvai" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-FFB6C1?style=for-the-badge&logo=linkedin&logoColor=white"/></a>
+  <a href="https://saririvaii.github.io" target="blank"><img src="https://img.shields.io/badge/Portfolio-FF1493?style=for-the-badge&logo=About.me&logoColor=white"/></a>
+</div>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+<h1/>
+
+<h3 align="left">Languages, Frameworks & Tools</h3>
+<a href="https://skillicons.dev">
+  <img src="https://skillicons.dev/icons?i=js,ts,html,css,react,nextjs,tailwind,styledcomponents,bootstrap,nodejs,graphql,postgres,mysql,mongodb,aws,vercel,git,github,figma,vscode,supabase,postman" width="100%"/>
+</a>
+...and always learning more
+
+<h1/>
+
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=FF69B4&height=100&section=footer" alt="saririvai" />
+</div>

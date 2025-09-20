@@ -20,7 +20,7 @@ export function useSanityData<T>(query: string, params?: Record<string, any>) {
     }
 
     fetchData()
-  }, [query, JSON.stringify(params)])
+  }, [query, params])
 
   return { data, loading, error }
 }
