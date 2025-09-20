@@ -2,10 +2,10 @@
   <img src="https://komarev.com/ghpvc/?username=saririvai&label=Profile%20views&color=e91e63&style=flat" alt="saririvai" />
 </div>
 
-<h1 align="center">Heya, I'm <a href="https://saririvai.github.io/" style="color: #FF69B4;">Sari Rivai</a> 🙋🏻‍♀️</h1>
+<h1 align="center">Heya, I'm Sari Rivai 🙋🏻‍♀️</h1>
 <h3 align="center">Passionate full-stack developer crafting modern web experiences with Next.js, React, and cutting-edge technologies.</h3>
 
-- 🔭 I'm currently Experimenting with ways to use AI to enhance user experiences, with a playful focus on the culinary world
+- I'm currently Experimenting with ways to use embeddings to enhance user experiences, with a playful focus on the culinary world
 
 - Passionate about the intersection of web development, user experience design, and emerging AI!
 
