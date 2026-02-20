@@ -18,11 +18,11 @@ export default function ProjectCards({ project, imageLeft }: ProjectCardsProps) 
     const tags = project.tags || [];
 
     return (
-        <div className="flex-row gap-4 h-[75vh] grid grid-cols-8 col-span-8 items-center">
-            {/* Image Section */}
-            <div className={`col-span-5 bg-black-main/5 rounded-3xl grid grid-cols-4 gap-4 h-full overflow-hidden ${imageLeft ? 'order-1' : 'order-2'}`}>
+        <div className="flex flex-col md:grid md:grid-cols-8 gap-4 h-auto md:h-[75vh] col-span-8 items-center">
+            {/* Image Section — always renders first on mobile */}
+            <div className={`w-full md:col-span-5 bg-black-main/5 rounded-2xl md:rounded-3xl grid grid-cols-4 h-[56vw] min-h-[220px] md:h-full overflow-hidden order-1 ${imageLeft ? 'md:order-1' : 'md:order-2'}`}>
                 {project.featuredImage && (
-                    <div className="col-span-4 relative h-full rounded-3xl overflow-hidden">
+                    <div className="col-span-4 relative h-full rounded-2xl md:rounded-3xl overflow-hidden">
                         <Image
                             src={urlFor(project.featuredImage).width(1200).height(800).url()}
                             alt={project.featuredImage.alt || (project as any).heroTitle || (project as any).title || 'Project image'}
@@ -35,30 +35,20 @@ export default function ProjectCards({ project, imageLeft }: ProjectCardsProps) 
             </div>
 
             {/* Text Section */}
-            <div className={`col-span-3 flex flex-col gap-6 p-4 max-w-[90%] ${imageLeft ? 'order-2' : 'order-1'}`}>
-                {/* Tags */}
+            <div className={`w-full md:col-span-3 flex flex-col gap-3 md:gap-6 py-1 md:p-4 max-w-full md:max-w-[90%] order-2 ${imageLeft ? 'md:order-2' : 'md:order-1'}`}>
                 {tags && tags.length > 0 && (
                     <p className="text-button text-black-main/50 tracking-tight font-sans">
                         {tags.join(' · ')}
                     </p>
                 )}
 
-                {/* Title */}
-                <h2 className="text-section-subtitle leading-7 text-black-main font-sans">
+                <h2 className="text-section-subtitle leading-tight text-black-main font-sans">
                     {(project as any).heroTitle || 'Untitled Project'}
                 </h2>
 
-                {/* Description
-                {project.heroIntro && (
-                    <p className="text-base text-black-main/80 font-sans leading-relaxed">
-                        {project.heroIntro}
-                    </p>
-                )} */}
-
-                {/* Action Links */}
                 <div className="flex flex-row gap-3 flex-wrap">
                     {projectSlug && (
-                        <CTAButton 
+                        <CTAButton
                             href={`/${projectSlug}`}
                         >
                             View Case Study

@@ -76,10 +76,10 @@ body {
         @apply text-xs sm:text-sm lg:text-base tracking-[-0.05em];
     }
     .text-section-title {
-        @apply text-base sm:text-lg lg:text-4xl leading-tight tracking-[-1];
+        @apply text-xl lg:text-4xl leading-tight tracking-[-1];
     }
     .text-section-subtitle {
-        @apply text-base sm:text-lg lg:text-2xl tracking-[-1];
+        @apply text-lg lg:text-2xl tracking-[-1];
     }
     .text-body-large {
         @apply text-base sm:text-lg lg:text-base tracking-[-0.05em];

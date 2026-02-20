@@ -29,10 +29,11 @@ export default function HeroProjects() {
     return (
         <section className="default-section">
             <h2 className="text-section-title text-center text-black-main font-sans tracking-tight">
-                Recent works that have <br />
+                Recent works that have{' '}
+                <br className="hidden md:block" />
                 significantly boosted business metrics.
             </h2>
-            <div className="space-y-16">
+            <div className="space-y-10 md:space-y-16">
                 {uniqueProjects.map((project, index) => {
                     // Alternate: even index = image left, odd index = image right
                     const imageLeft = index % 2 === 0;

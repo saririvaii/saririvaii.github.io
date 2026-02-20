@@ -107,15 +107,15 @@ export default function AnimatedHeroImage({
     return (
         <div
             ref={containerRef}
-            className="bg-accent-primary rounded-3xl col-span-4 grid grid-cols-4 gap-6 overflow-hidden h-[85vh] px-6"
+            className="bg-accent-primary rounded-3xl col-span-4 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-6 overflow-hidden h-[30vh] md:h-[85vh] px-2 md:px-6"
         >
-            {/* Column 1: Desktop images span 2 cols */}
-            <div className="col-span-2 relative h-full overflow-hidden">
+            {/* Column 1: Desktop images — hidden on mobile, 2 cols on desktop */}
+            <div className="hidden md:block md:col-span-2 relative h-full overflow-hidden">
                 <div
                     className="absolute left-0 top-1/2 w-full will-change-transform"
                     style={{ transform: `translateY(calc(-50% + ${col1Y}px))` }}
                 >
-                    <div className="flex flex-col gap-6 py-12">
+                    <div className="flex flex-col gap-1 md:gap-6 py-2 md:py-12">
                         <div className="relative w-full rounded-lg overflow-hidden">
                             <Image
                                 src={urlFor(desktopImages[0]).width(1200).url()}
@@ -123,7 +123,7 @@ export default function AnimatedHeroImage({
                                 width={1200}
                                 height={800}
                                 className="w-full h-auto object-cover"
-                                sizes="50vw"
+                                sizes="(max-width: 768px) 33vw, 50vw"
                                 priority
                             />
                         </div>
@@ -135,20 +135,20 @@ export default function AnimatedHeroImage({
                                 width={1200}
                                 height={800}
                                 className="w-full h-auto object-cover"
-                                sizes="50vw"
+                                sizes="(max-width: 768px) 33vw, 50vw"
                             />
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Column 2: Single mobile */}
+            {/* Column 2: Single mobile — col-span-1 on mobile, col-span-1 on desktop */}
             <div className="col-span-1 relative h-full overflow-hidden">
                 <div
                     className="absolute left-0 top-1/2 w-full will-change-transform"
                     style={{ transform: `translateY(calc(-50% + ${col2Y}px))` }}
                 >
-                    <div className="py-14">
+                    <div className="py-2 md:py-14">
                         <div className="relative w-full rounded-lg overflow-hidden">
                             <Image
                                 src={urlFor(mobileImages[0]).width(600).url()}
@@ -156,20 +156,20 @@ export default function AnimatedHeroImage({
                                 width={600}
                                 height={1200}
                                 className="w-full h-auto object-cover"
-                                sizes="25vw"
+                                sizes="(max-width: 768px) 50vw, 25vw"
                             />
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Column 3: Two mobiles */}
+            {/* Column 3: Two mobiles — col-span-1 on mobile, col-span-1 on desktop */}
             <div className="col-span-1 relative h-full overflow-hidden">
                 <div
                     className="absolute left-0 top-1/2 w-full will-change-transform"
                     style={{ transform: `translateY(calc(-50% + ${col3Y}px))` }}
                 >
-                    <div className="flex flex-col gap-6 py-12">
+                    <div className="flex flex-col gap-1 md:gap-6 py-2 md:py-12">
                         <div className="relative w-full rounded-lg overflow-hidden">
                             <Image
                                 src={urlFor(mobileImages[1]).width(600).url()}
@@ -177,7 +177,7 @@ export default function AnimatedHeroImage({
                                 width={600}
                                 height={1200}
                                 className="w-full h-auto object-cover"
-                                sizes="25vw"
+                                sizes="(max-width: 768px) 50vw, 25vw"
                             />
                         </div>
 
@@ -188,7 +188,7 @@ export default function AnimatedHeroImage({
                                 width={600}
                                 height={1200}
                                 className="w-full h-auto object-cover"
-                                sizes="25vw"
+                                sizes="(max-width: 768px) 50vw, 25vw"
                             />
                         </div>
                     </div>

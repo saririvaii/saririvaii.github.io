@@ -225,18 +225,18 @@ export default function CaseStudyContent({
                     }
 
                     return (
-                      <div key={key} className="grid grid-cols-12 gap-x-8 gap-y-6">
+                      <div key={key} className="flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-x-8 md:gap-y-6">
                         {/* headline left: col-span-3 */}
-                        <div className="col-span-8 lg:col-span-5 lg:pr-16">
+                        <div className="w-full md:col-span-5 md:pr-16">
                           {block.headline ? (
-                            <h3 className="text-3xl leading-[0.95] tracking-[-0.03em] text-black">
+                            <h3 className="text-2xl md:text-3xl leading-[0.95] tracking-[-0.03em] text-black">
                               {block.headline}
                             </h3>
                           ) : null}
                         </div>
 
                         {/* body right: start col 4 span 5 */}
-                        <div className="col-span-8 lg:col-start-6 lg:col-span-7">
+                        <div className="w-full md:col-start-6 md:col-span-7">
                           <div className="prose prose-neutral max-w-none">
                             <RichTextBlock value={block.body ?? []} />
                           </div>
