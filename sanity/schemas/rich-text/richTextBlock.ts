@@ -25,8 +25,8 @@ export const richText = defineType({
                     { title: "Strong", value: "strong" },
                     { title: "Emphasis", value: "em" },
                     { title: "Underline", value: "underline" },
-                    { 
-                        title: "Strikethrough", 
+                    {
+                        title: "Strikethrough",
                         value: "strike-through",
                         icon: () => "S",
                     },
@@ -40,7 +40,8 @@ export const richText = defineType({
                             {
                                 name: "url",
                                 title: "URL",
-                                description: "Internal path (e.g., /about) or external URL (e.g., https://example.com)",
+                                description:
+                                    "Internal path (e.g., /about) or external URL (e.g., https://example.com)",
                                 type: "string",
                             },
                             {

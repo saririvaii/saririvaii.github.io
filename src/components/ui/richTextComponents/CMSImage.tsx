@@ -62,7 +62,9 @@ export default function CMSImage({
 
     try {
         if (sanityImage.asset?._ref) {
-            const dimensions = getImageDimensions(sanityImage as SanityImageSource);
+            const dimensions = getImageDimensions(
+                sanityImage as SanityImageSource,
+            );
             const naturalWidth = dimensions.width;
             const naturalHeight = dimensions.height;
 

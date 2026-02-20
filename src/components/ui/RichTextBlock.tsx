@@ -114,9 +114,9 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                 <strong className="font-bold">{children}</strong>
             ),
             em: ({ children }) => <em className="italic">{children}</em>,
-            italic: ({ children }) => 
-                <span className="font-serif italic">{children}
-            </span>,
+            italic: ({ children }) => (
+                <span className="font-serif italic">{children}</span>
+            ),
             underline: ({ children }) => (
                 <span className="underline">{children}</span>
             ),
@@ -215,7 +215,11 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                             <a
                                 href={href}
                                 target={value.newTab ? "_blank" : "_self"}
-                                rel={value.newTab ? "noreferrer noopener" : undefined}
+                                rel={
+                                    value.newTab
+                                        ? "noreferrer noopener"
+                                        : undefined
+                                }
                                 className={`inline-block ${buttonClasses}`}
                             >
                                 {ButtonContent}

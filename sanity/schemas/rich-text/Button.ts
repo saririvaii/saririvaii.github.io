@@ -15,7 +15,8 @@ export const Button = defineType({
             name: "url",
             title: "URL",
             type: "string",
-            description: "Internal path (e.g., /about) or external URL (e.g., https://example.com)",
+            description:
+                "Internal path (e.g., /about) or external URL (e.g., https://example.com)",
             validation: (Rule) => Rule.required(),
         }),
         defineField({

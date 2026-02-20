@@ -118,6 +118,17 @@ export type Hero = {
     alt?: string;
     _type: "image";
   };
+  animatedHeroImage?: AnimatedHeroImage;
+};
+
+export type AnimatedHeroImage = {
+  _type: "animatedHeroImage";
+  desktopImages?: Array<{
+    _key: string;
+  } & SanityImage>;
+  mobileImages?: Array<{
+    _key: string;
+  } & SanityImage>;
 };
 
 export type SkillsPage = {
@@ -349,5 +360,5 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = RichText | Button | SanityImage | HomePage | Hero | SkillsPage | SkillCategory | Skill | Project | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = RichText | Button | SanityImage | HomePage | Hero | AnimatedHeroImage | SkillsPage | SkillCategory | Skill | Project | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
