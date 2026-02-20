@@ -20,7 +20,13 @@ export const queries = {
   homePage: `*[_type == "homePage"][0]`,
   
   // Hero queries (from home page)
-  hero: `*[_type == "homePage"][0].hero`,
+  hero: `*[_type == "homePage"][0].hero{
+    title,
+    description,
+    primaryButton,
+    secondaryButton,
+    heroImage
+  }`,
   
   // Project queries (consolidated with blog functionality)
   projects: `*[_type == "project"] | order(order asc, publishedAt desc) {

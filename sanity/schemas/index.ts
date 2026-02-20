@@ -3,6 +3,9 @@ import { project } from './project'
 import { skill, skillCategory, skillsPage } from './skill'
 import { hero } from './hero'
 import { homePage } from './homePage'
+import { SanityImage } from './rich-text/SanityImage'
+import { Button } from './rich-text/Button'
+import { richText } from './rich-text/richTextBlock'
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   project,
@@ -11,4 +14,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   skillsPage,
   hero,
   homePage,
+  SanityImage,
+  Button,
+  richText,
 ]

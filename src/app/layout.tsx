@@ -1,10 +1,18 @@
 import type { Metadata } from 'next'
 import { Manrope } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 
 const manrope = Manrope({ 
   subsets: ['latin'],
   variable: '--font-manrope',
+  display: 'swap',
+  weight: ['200', '300', '400', '500', '600', '700', '800'],
+})
+
+const garamond = localFont({
+  src: './GaramondPremrPro-Bd.otf',
+  variable: '--font-garamond',
   display: 'swap',
 })
 
@@ -19,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={manrope.className}>{children}</body>
+    <html lang="en" className="bg-[#FBFAF8]">
+      <body className={`${manrope.variable} ${garamond.variable} ${manrope.className} bg-[#FBFAF8]`}>{children}</body>
     </html>
   )
 }

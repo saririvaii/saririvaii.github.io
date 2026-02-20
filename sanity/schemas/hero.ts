@@ -8,13 +8,8 @@ export const hero = defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
+      type: 'richText',
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'subtitle',
-      title: 'Subtitle',
-      type: 'string',
     }),
     defineField({
       name: 'description',

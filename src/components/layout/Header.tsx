@@ -1,47 +1,70 @@
+'use client'
+
 import Link from 'next/link'
-import Navigation from './Navigation'
+import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const navItems = [
+    { label: 'Works', href: '/works' },
+    { label: 'Playground', href: '/playground' },
+    { label: 'About', href: '/about' },
+    { label: "Let's Chat", href: '/contact' },
+  ]
+
   return (
-    <header>
-      <nav aria-label="Primary Hidden Navigation" className="sr-only">
-        <ul>
-          <li><Link href="/case-study">Case Studies</Link></li>
-          <li><Link href="/migration">Migration</Link></li>
-          <li><Link href="/migration/wordpress-to-sanity">WordPress → Sanity</Link></li>
-          <li><Link href="/migration/prismic-to-sanity">Prismic → Sanity</Link></li>
-          <li><Link href="/migration/strapi-to-contentful">Strapi → Contentful</Link></li>
-          <li><Link href="/migration/adobe-experience-manager-to-contentful">AEM → Contentful</Link></li>
-          <li><Link href="/migration/wordpress-to-contentful">WordPress → Contentful</Link></li>
-          <li><Link href="/migration/dato-to-contentful">Dato CMS → Contentful</Link></li>
-          <li><Link href="/migration/wordpress-to-prismic">WordPress → Prismic</Link></li>
-          <li><Link href="/migration/adobe-experience-manager-to-sanity">AEM → Sanity</Link></li>
-          <li><Link href="/migration/storyblok-to-contentful">Storyblok → Contentful</Link></li>
-          <li><Link href="/migration/storyblok-to-sanity">Storyblok → Sanity</Link></li>
-          <li><Link href="/migration/sanity-to-contentful">Sanity → Contentful</Link></li>
-          <li><Link href="/migration/contentful-to-sanity">Contentful → Sanity</Link></li>
-          <li><Link href="/services/sanity">Sanity website development</Link></li>
-          <li><Link href="/services/nextjs">Next.js app development</Link></li>
-          <li><Link href="/services/contentful">Contentful website development</Link></li>
-          <li><Link href="/services/sanity-nextjs-accelerator">Sanity & Next.js accelerator</Link></li>
-          <li><Link href="/blog">Blog</Link></li>
-          <li><Link href="/contact">Get in touch</Link></li>
+    <header className="default-section py-6 font-sans">
+      <nav className="w-full flex md:col-span-full md:grid md:gap-4 md:grid-cols-8 items-center justify-between">
+        {/* Logo/Brand */}
+        <Link href="/" className="text-black-main/40 text-xl uppercase hover:opacity-80 transition-opacity col-span-2">
+          Sari Rivai
+        </Link>
+
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex items-center gap-10 md:col-start-6 md:col-span-4">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className="text-black-main/60 text-base hover:opacity-70 transition-opacity"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
+
+        {/* Mobile Menu Button */}
+        <button
+          type="button"
+          className="md:hidden text-black-main"
+          aria-label="Toggle menu"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </nav>
-      
-      <section className="container">
-        <div className="border-x border-zinc-200 dark:border-zinc-800 relative h-4"></div>
-      </section>
-      
-      <hr className="border-zinc-200 dark:border-zinc-800" />
-      
-      <section className="container">
-        <div className="border-x border-zinc-200 dark:border-zinc-800 relative h-16">
-          <Navigation />
+
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <div className="md:hidden border-t border-black-main/10 bg-white-main">
+          <ul className="container flex flex-col py-4 px-4">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="block py-3 text-black-main text-base hover:opacity-70 transition-opacity"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-      </section>
-      
-      <hr className="border-zinc-200 dark:border-zinc-800" />
+      )}
     </header>
   )
 }

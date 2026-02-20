@@ -8,6 +8,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // Main color palette
+        'black-main': '#1A1A1A',
+        'white-main': '#FBFAF8',
+        'accent-primary': '#484C18',
+        // Legacy support
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         muted: 'var(--muted)',
@@ -20,6 +25,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-manrope)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-garamond)', 'serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
       },
     },

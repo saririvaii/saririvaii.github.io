@@ -8,10 +8,10 @@ export default function Home() {
     <main>
       <Header />
       <Hero />
-      <hr className="border-zinc-200 dark:border-zinc-800" />
+      {/* <hr className="border-zinc-200 dark:border-zinc-800" />
       <Skills />
       <hr className="border-zinc-200 dark:border-zinc-800" />
-      <FeaturedProjects />
+      <FeaturedProjects /> */}
     </main>
   )
 }
