@@ -25,7 +25,7 @@ export default function CaseStudyHero({
     <section className="default-section">
 
         {/* Top content */}
-        <div className="pt-24 grid grid-cols-8 gap-4 md:gap-8 items-end w-full">
+        <div className="pt-24 grid grid-cols-8 gap-4 items-end w-full">
             {/* Left text */}
             <div className="col-span-8 md:col-span-4">
                 <div className="flex flex-col gap-4">

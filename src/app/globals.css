@@ -91,7 +91,7 @@ body {
         @apply text-xs sm:text-sm lg:text-sm tracking-[-0.02em];
     }
     .text-caption {
-        @apply text-xs sm:text-xs lg:text-sm tracking-[-0.05em];
+        @apply text-xs sm:text-xs lg:text-sm tracking-[-0.02em];
     }
     .text-button {
         @apply text-xs sm:text-xs lg:text-xs tracking-[-0.02em];

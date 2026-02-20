@@ -119,20 +119,20 @@ export default function CaseStudyContent({
             'pointer-events-auto',
             'fixed right-8 top-1/2 -translate-y-1/2 z-50',
             'transition-all duration-300 ease-out',
-            navHovered ? 'w-[240px]' : 'w-[38px]',
+            navHovered ? 'w-[160px]' : 'w-[38px]',
           ].join(' ')}
           onMouseEnter={() => setNavHovered(true)}
           onMouseLeave={() => setNavHovered(false)}
         >
           <div
             className={[
-              'rounded-3xl transition-all duration-300 ease-out',
+              'rounded-xl transition-all duration-300 ease-out',
               navHovered 
                 ? 'bg-white/60 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.08)] px-3 py-4' 
                 : 'bg-transparent px-0 py-0',
             ].join(' ')}
           >
-            <nav className={navHovered ? 'flex flex-col gap-2 items-start' : 'flex flex-col items-end space-y-[1px]'}>
+            <nav className={navHovered ? 'flex flex-col gap-0.5 items-end' : 'flex flex-col items-end space-y-[1px]'}>
             {sectionMeta.map(({ id, title, index }) => {
                 const isActive = id === activeId
                 const isRead = activeIndex !== -1 && index < activeIndex
@@ -142,44 +142,44 @@ export default function CaseStudyContent({
                 else if (isRead) dashWidth = 'w-[7px]'
 
                 return (
-                <button
-                    key={id}
-                    type="button"
-                    onClick={() => scrollToId(id, scrollOffsetPx)}
-                    className={[
-                    'group flex items-center',
-                    navHovered 
-                        ? 'justify-start py-1' 
-                        : 'relative justify-end h-[7px] p-0 m-0 leading-none',
-                    ].join(' ')}
-                    aria-current={isActive ? 'true' : 'false'}
-                >
-                    {/* dash - only show when not hovered */}
-                    {!navHovered && (
-                    <span
+                    <button
+                        key={id}
+                        type="button"
+                        onClick={() => scrollToId(id, scrollOffsetPx)}
                         className={[
-                            'block h-[1px] bg-black/90 transition-all duration-500 ease-out',
-                            dashWidth,
-                        ].join(' ')}
-                    />
-                    )}
-
-                    {/* label */}
-                    <span
-                    className={[
-                        'whitespace-nowrap tracking-[-0.01em] transition-all duration-300 ease-out',
+                        'group flex items-center',
                         navHovered 
-                            ? 'opacity-100 text-sm' 
-                            : 'absolute right-0 top-1/2 -translate-y-1/2 opacity-0 translate-x-0 pointer-events-none',
-                        'group-hover:line-through',
-                        isActive ? 'text-black' : 'text-black/60',
-                    ].join(' ')}
+                            ? 'justify-end py-0.5' 
+                            : 'relative justify-end h-[7px] p-0 m-0 leading-none',
+                        ].join(' ')}
+                        aria-current={isActive ? 'true' : 'false'}
                     >
-                    {title}
-                    </span>
-                </button>
-                )
-            })}
+                        {/* dash - only show when not hovered */}
+                        {!navHovered && (
+                        <span
+                            className={[
+                                'block h-[1px] bg-black/90 transition-all duration-500 ease-out',
+                                dashWidth,
+                            ].join(' ')}
+                        />
+                        )}
+
+                        {/* label */}
+                        <span
+                        className={[
+                            'whitespace-nowrap tracking-[-0.01em] transition-all duration-300 ease-out',
+                            navHovered 
+                                ? 'opacity-100 text-xs text-right' 
+                                : 'absolute right-0 top-1/2 -translate-y-1/2 opacity-0 translate-x-0 pointer-events-none',
+                            'group-hover:line-through',
+                            isActive ? 'text-black' : 'text-black/60',
+                        ].join(' ')}
+                        >
+                            {title}
+                        </span>
+                    </button>
+                    )
+                })}
             </nav>
 
           </div>
@@ -187,7 +187,7 @@ export default function CaseStudyContent({
       </div>
 
       {/* MAIN CONTENT */}
-      <div className="default-section py-0">
+      <div className="default-section py-0 pb-12">
         <div className="flex flex-col gap-20">
           {sections.map((section, sectionIndex) => {
             const meta = sectionMeta[sectionIndex]
@@ -195,9 +195,9 @@ export default function CaseStudyContent({
 
             return (
               <section key={section._key ?? id} id={id} className="scroll-mt-24">
-                {/* Optional: you can hide this if you ONLY want title in nav */}
+                {/* Optional: hide this if ONLY want title in nav */}
                 <div className="mb-10">
-                  <h2 className="text-body-large tracking-[-0.01em] text-black/40">{section.title}</h2>
+                  <h2 className="text-body-small tracking-[-0.01em] text-black/40">{section.title}</h2>
                 </div>
 
                 <div className="flex flex-col gap-12">

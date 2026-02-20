@@ -28,7 +28,7 @@ export default function Header() {
                 </Link>
 
                 {/* Desktop Navigation */}
-                <ul className="hidden md:flex items-center gap-10 md:col-start-6 md:col-span-4">
+                <ul className="hidden md:flex items-center gap-10 md:col-start-6 md:col-span-3">
                     {navItems.map((item) => (
                         <li key={item.href}>
                             <Link

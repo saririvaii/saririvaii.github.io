@@ -41,15 +41,15 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="bg-black-main default-section gap-12 pb-8">
+        <footer className="bg-black-main default-section gap-12 pt-12 pb-8">
             <div className="grid grid-cols-8 gap-4 md:gap-8 w-full">
                 {/* Top-left: Name and subtitle */}
                 <div className="col-span-8 md:col-span-5 mb-12 md:mb-0">
                     <h2 className="text-hero-title font-sans font-semibold uppercase leading-tight tracking-tight text-white mb-2">
-                        SARI RIVAI.
+                        SARI RIVAI
                     </h2>
-                    <p className="text-white/60 text-caption font-sans font-light">
-                        Product Designer & Web Developer
+                    <p className="text-white/60 text-button font-sans font-light">
+                        Product Designer & Web Developer.
                     </p>
                 </div>
 
