@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import Lenis from '@studio-freight/lenis'
 
 export default function SmoothScrollProvider({
@@ -9,8 +10,14 @@ export default function SmoothScrollProvider({
   children: React.ReactNode
 }) {
   const lenisRef = useRef<Lenis | null>(null)
+  const pathname = usePathname()
 
   useEffect(() => {
+    // Skip Lenis for Sanity Studio routes
+    if (pathname?.startsWith('/studio')) {
+      return
+    }
+
     const lenis = new Lenis({
       duration: 1.2, // scroll smoothness
       smoothWheel: true,
@@ -29,7 +36,7 @@ export default function SmoothScrollProvider({
     return () => {
       lenis.destroy()
     }
-  }, [])
+  }, [pathname])
 
   return <>{children}</>
 }

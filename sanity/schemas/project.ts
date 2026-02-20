@@ -1,44 +1,94 @@
 import { defineType, defineField } from "sanity";
 import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
+import { HeroStatsObject } from "./heroStats";
 
 export const project = defineType({
     name: "project",
     title: "Project",
     type: "document",
+    groups: [
+        {
+            name: "featureCard",
+            title: "Feature Card",
+        },
+        {
+            name: "hero",
+            title: "Hero",
+        },
+        {
+            name: "content",
+            title: "Content",
+        },
+        {
+            name: "meta",
+            title: "Meta",
+        },
+    ],
     fields: [
         // Order rank field for drag-and-drop ordering
         orderRankField({ type: "project" }),
         defineField({
-            name: "title",
-            title: "Title",
-            type: "string",
-            validation: (Rule) => Rule.required(),
-        }),
-        defineField({
+            group: "featureCard",
             name: "slug",
             title: "Slug",
             type: "slug",
             options: {
-                source: "title",
+                source: "heroTitle",
                 maxLength: 96,
             },
             validation: (Rule) => Rule.required(),
         }),
+        // Hero Section Fields
         defineField({
-            name: "description",
-            title: "Description",
+            group: "hero",
+            name: "preTitle",
+            title: "Pre-Title",
+            type: "string",
+            description: "Small text above the main title (e.g., 'Enaccess Maps 2024')",
+        }),
+        defineField({
+            group: "hero",
+            name: "heroTitle",
+            title: "Hero Title",
             type: "text",
-            rows: 3,
+            rows: 2,
+            description: "Main hero title (2 rows)",
             validation: (Rule) => Rule.required(),
         }),
         defineField({
-            name: "intro",
-            title: "Intro",
+            group: "hero",
+            name: "heroIntro",
+            title: "Hero Intro",
             type: "text",
-            rows: 2,
-            description: "Short introductory text for the hero section",
+            rows: 4,
+            description: "Hero introduction text (4 rows)",
         }),
         defineField({
+            group: "hero",
+            name: "heroStats",
+            title: "Hero Stats",
+            type: "array",
+            of: [HeroStatsObject],
+        }),
+        defineField({
+            group: "hero",
+            name: "heroImage",
+            title: "Hero Image",
+            type: "image",
+            options: {
+                hotspot: true,
+            },
+            fields: [
+                {
+                    name: "alt",
+                    title: "Alt Text",
+                    type: "string",
+                },
+            ],
+        }),
+        
+        defineField({
+            group: "content",
             name: "content",
             title: "Content",
             type: "array",
@@ -113,6 +163,7 @@ export const project = defineType({
             ],
         }),
         defineField({
+            group: "featureCard",
             name: "featuredImage",
             title: "Featured Image",
             type: "image",
@@ -127,30 +178,9 @@ export const project = defineType({
                 },
             ],
         }),
+        
         defineField({
-            name: "gallery",
-            title: "Project Gallery",
-            type: "array",
-            of: [
-                {
-                    type: "image",
-                    options: { hotspot: true },
-                    fields: [
-                        {
-                            name: "alt",
-                            title: "Alt Text",
-                            type: "string",
-                        },
-                        {
-                            name: "caption",
-                            title: "Caption",
-                            type: "string",
-                        },
-                    ],
-                },
-            ],
-        }),
-        defineField({
+            group: "meta",
             name: "technologies",
             title: "Technologies Used",
             type: "array",
@@ -160,6 +190,7 @@ export const project = defineType({
             },
         }),
         defineField({
+            group: "meta",
             name: "category",
             title: "Category",
             type: "string",
@@ -177,28 +208,33 @@ export const project = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            group: "meta",
             name: "liveUrl",
             title: "Live URL",
             type: "url",
         }),
         defineField({
+            group: "meta",
             name: "githubUrl",
             title: "GitHub URL",
             type: "url",
         }),
         defineField({
+            group: "meta",
             name: "featured",
             title: "Featured",
             type: "boolean",
             initialValue: false,
         }),
         defineField({
+            group: "meta",
             name: "publishedAt",
             title: "Published At",
             type: "datetime",
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            group: "featureCard",
             name: "tags",
             title: "Tags",
             type: "array",
@@ -210,16 +246,19 @@ export const project = defineType({
     ],
     preview: {
         select: {
-            title: "title",
+            title: "heroTitle",
+            preTitle: "preTitle",
             category: "category",
             publishedAt: "publishedAt",
-            media: "featuredImage",
+            media: "heroImage",
         },
         prepare(selection) {
-            const { category, publishedAt } = selection;
+            const { title, preTitle, category, publishedAt } = selection;
+            const displayTitle = preTitle ? `${preTitle} - ${title}` : title;
             return {
-                ...selection,
-                subtitle: `${category}${publishedAt ? ` • ${new Date(publishedAt).toLocaleDateString()}` : ""}`,
+                title: displayTitle || "Untitled Project",
+                subtitle: `${category || ""}${publishedAt ? ` • ${new Date(publishedAt).toLocaleDateString()}` : ""}`,
+                media: selection.media,
             };
         },
     },

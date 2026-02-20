@@ -182,8 +182,29 @@ export type Project = {
     _updatedAt: string;
     _rev: string;
     orderRank?: string;
-    title?: string;
     slug?: Slug;
+    preTitle?: string;
+    heroTitle?: string;
+    heroIntro?: string;
+    heroStats?: Array<
+        {
+            _key: string;
+        } & HeroStats
+    >;
+    heroImage?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+    };
+    title?: string;
     description?: string;
     intro?: string;
     content?: Array<
@@ -274,6 +295,12 @@ export type Slug = {
     _type: "slug";
     current?: string;
     source?: string;
+};
+
+export type HeroStats = {
+    _type: "heroStats";
+    number?: string;
+    description?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -386,6 +413,7 @@ export type AllSanitySchemaTypes =
     | Skill
     | Project
     | Slug
+    | HeroStats
     | SanityImagePaletteSwatch
     | SanityImagePalette
     | SanityImageDimensions

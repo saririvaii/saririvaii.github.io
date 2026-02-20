@@ -7,9 +7,11 @@ import { homePage } from "../../sanity/schemas/homePage";
 import { SanityImage } from "../../sanity/schemas/rich-text/SanityImage";
 import { Button } from "../../sanity/schemas/rich-text/Button";
 import { richText } from "../../sanity/schemas/rich-text/richTextBlock";
+import { heroStats } from "../../sanity/schemas/heroStats";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
+    heroStats,
     project,
     skill,
     skillCategory,

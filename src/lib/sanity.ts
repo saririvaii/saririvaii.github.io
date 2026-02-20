@@ -59,9 +59,15 @@ export const queries = {
     // Project queries (consolidated with blog functionality)
     projects: `*[_type == "project"] | order(orderRank asc) {
     _id,
-    title,
+    preTitle,
+    heroTitle,
+    heroIntro,
+    heroStats[]{
+      number,
+      description
+    },
+    heroImage,
     slug,
-    description,
     featuredImage,
     technologies,
     category,
@@ -75,9 +81,15 @@ export const queries = {
 
     featuredProjects: `*[_type == "project" && featured == true] | order(orderRank asc) [0...3] {
     _id,
-    title,
+    preTitle,
+    heroTitle,
+    heroIntro,
+    heroStats[]{
+      number,
+      description
+    },
+    heroImage,
     slug,
-    description,
     featuredImage,
     technologies,
     category,
@@ -90,10 +102,15 @@ export const queries = {
 
     project: `*[_type == "project" && slug.current == $slug][0] {
     _id,
-    title,
+    preTitle,
+    heroTitle,
+    heroIntro,
+    heroStats[]{
+      number,
+      description
+    },
+    heroImage,
     slug,
-    description,
-    intro,
     content,
     featuredImage,
     gallery,

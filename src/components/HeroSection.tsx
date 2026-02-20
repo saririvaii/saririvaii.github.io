@@ -2,9 +2,13 @@ import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
 
 interface HeroSectionProps {
+    preTitle?: string;
     title: string;
-    description: string;
-    intro?: string;
+    description?: string;
+    heroStats?: Array<{
+        number: string;
+        description: string;
+    }>;
     imageUrl?: string | null;
     imageAlt: string;
     liveUrl?: string;

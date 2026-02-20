@@ -15,8 +15,10 @@ export default function Header() {
     ];
 
     return (
-        <header className="default-section py-6 font-sans">
-            <nav className="w-full flex md:col-span-full md:grid md:gap-4 md:grid-cols-8 items-center justify-between">
+        <header className="fixed top-0 left-0 right-0 z-50 font-sans">
+            {/* <div className="default-section py-6 backdrop-blur-md bg-gradient-to-b from-white-main to-white-main/0"> */}
+            <div className="default-section py-6 bg-white-main">
+                <nav className="w-full flex md:col-span-full md:grid md:gap-4 md:grid-cols-8 items-center justify-between">
                 {/* Logo/Brand */}
                 <Link
                     href="/"
@@ -31,7 +33,7 @@ export default function Header() {
                         <li key={item.href}>
                             <Link
                                 href={item.href}
-                                className="text-black-main/60 text-caption hover:opacity-70 transition-opacity"
+                                className="text-button text-black-main/60 text-caption hover:opacity-70 transition-opacity"
                             >
                                 {item.label}
                             </Link>
@@ -50,24 +52,25 @@ export default function Header() {
                 </button>
             </nav>
 
-            {/* Mobile Navigation */}
-            {isMenuOpen && (
-                <div className="md:hidden border-t border-black-main/10 bg-white-main">
-                    <ul className="container flex flex-col py-4 px-4">
-                        {navItems.map((item) => (
-                            <li key={item.href}>
-                                <Link
-                                    href={item.href}
-                                    className="block py-3 text-black-main text-base hover:opacity-70 transition-opacity"
-                                    onClick={() => setIsMenuOpen(false)}
-                                >
-                                    {item.label}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+                {/* Mobile Navigation */}
+                {isMenuOpen && (
+                    <div className="md:hidden border-t border-black-main/10 bg-white-main/95 backdrop-blur-md mt-4">
+                        <ul className="flex flex-col py-4">
+                            {navItems.map((item) => (
+                                <li key={item.href}>
+                                    <Link
+                                        href={item.href}
+                                        className="block py-3 text-black-main text-base hover:opacity-70 transition-opacity"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
         </header>
     );
 }

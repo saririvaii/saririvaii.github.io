@@ -23,10 +23,27 @@ export default async function ProjectPost({ params }: ProjectPostProps) {
     const project = await client.fetch(
         `*[_type == "project" && slug.current == $slug][0] {
     _id,
-    title,
+    preTitle,
+    heroTitle,
+    heroIntro,
+    heroStats[]{
+      number,
+      description
+    },
+    heroImage{
+      ...,
+      asset->{
+        _id,
+        url,
+        metadata {
+          dimensions {
+            width,
+            height
+          }
+        }
+      }
+    },
     slug,
-    description,
-    intro,
     content,
     featuredImage,
     gallery,
