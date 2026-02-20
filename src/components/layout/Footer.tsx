@@ -1,86 +1,130 @@
-import Link from "next/link";
-import FooterSection from "./FooterLinks";
-import ThemeSwitcher from "./ThemeSwitcher";
+"use client";
 
-const footerSections = [
-    {
-        title: "Invictus",
-        links: [
-            { label: "Team", href: "/team" },
-            { label: "Blog", href: "/blog" },
-            { label: "Careers", href: "/careers", badge: "Hiring" },
-            { label: "Get in touch", href: "/contact" },
-        ],
-    },
-    {
-        title: "Services",
-        links: [
-            { label: "Migration", href: "/migration" },
-            { label: "Sanity", href: "/services/sanity" },
-            { label: "Next.js", href: "/services/nextjs" },
-            { label: "Contentful", href: "/services/contentful" },
-        ],
-    },
-    {
-        title: "Social",
-        links: [
-            {
-                label: "LinkedIn",
-                href: "https://www.linkedin.com/company/11290247",
-            },
-            { label: "X", href: "https://x.com/studioroboto" },
-        ],
-    },
-];
+import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
-    return (
-        <footer className="-mt-px">
-            <hr className="border-zinc-200 dark:border-zinc-800" />
-            <section className="container">
-                <div className="border-x border-zinc-200 dark:border-zinc-800 relative">
-                    <div className="py-12 px-4">
-                        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-                            {footerSections.map((section, index) => (
-                                <FooterSection key={index} {...section} />
-                            ))}
-                            <ThemeSwitcher />
-                        </div>
-                    </div>
-                </div>
-            </section>
+    const [currentTime, setCurrentTime] = useState<string>("");
 
-            <hr className="border-zinc-200 dark:border-zinc-800" />
-            <section className="container">
-                <div className="border-x border-zinc-200 dark:border-zinc-800 relative">
-                    <div className="py-6 px-4">
-                        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                            <div className="flex flex-wrap gap-4 text-sm text-zinc-500">
-                                <Link
-                                    className="hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
-                                    href="/privacy"
-                                >
-                                    Privacy policy
-                                </Link>
-                                <span className="hidden md:inline">•</span>
-                                <Link
-                                    className="hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
-                                    href="/terms"
-                                >
-                                    Terms of use
-                                </Link>
-                            </div>
-                            <div className="flex items-center gap-8">
-                                <div className="text-sm text-zinc-500">
-                                    <span>Registered in England & Wales</span>
-                                    <span className="mx-2">•</span>
-                                    <span>VAT Number 426637679</span>
-                                </div>
-                            </div>
-                        </div>
+    useEffect(() => {
+        // Update time immediately
+        const updateTime = () => {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString("en-AU", {
+                hour: "2-digit",
+                minute: "2-digit",
+                timeZone: "Australia/Melbourne",
+                hour12: false,
+            });
+            setCurrentTime(`${timeString} AEST`);
+        };
+
+        updateTime();
+        // Update every minute
+        const interval = setInterval(updateTime, 60000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    const getInTouchLinks = [
+        { label: "LinkedIn", href: "https://linkedin.com" },
+        { label: "Github", href: "https://github.com" },
+        { label: "Email", href: "mailto:hello@saririvai.com" },
+    ];
+
+    const navigationLinks = [
+        { label: "Home", href: "/" },
+        { label: "Works", href: "/works" },
+        { label: "About", href: "/about" },
+        { label: "Playground", href: "/playground" },
+        { label: "Contact", href: "/contact" },
+    ];
+
+    return (
+        <footer className="bg-black-main default-section gap-12 pb-8">
+            <div className="grid grid-cols-8 gap-4 md:gap-8 w-full">
+                {/* Top-left: Name and subtitle */}
+                <div className="col-span-8 md:col-span-5 mb-12 md:mb-0">
+                    <h2 className="text-hero-title font-sans font-semibold uppercase leading-tight tracking-tight text-white mb-2">
+                        SARI RIVAI.
+                    </h2>
+                    <p className="text-white/60 text-caption font-sans font-light">
+                        Product Designer & Web Developer
+                    </p>
+                </div>
+
+                {/* Right-side: Link columns */}
+                <div className="col-span-12 md:col-start-6 md:col-span-2 grid grid-cols-2 gap-8 md:gap-12 mb-12 md:mb-0">
+                    {/* GET IN TOUCH */}
+                    <div>
+                        <h3 className="text-white/60 text-xs uppercase tracking-wider font-sans mb-4">
+                            GET IN TOUCH
+                        </h3>
+                        <ul className="space-y-2">
+                            {getInTouchLinks.map((link) => (
+                                <li key={link.href}>
+                                    {link.href.startsWith("http") || link.href.startsWith("mailto") ? (
+                                        <a
+                                            href={link.href}
+                                            target={link.href.startsWith("http") ? "_blank" : undefined}
+                                            rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                            className="text-white/90 hover:text-white transition-colors font-sans text-button"
+                                        >
+                                            {link.label}
+                                        </a>
+                                    ) : (
+                                        <Link
+                                            href={link.href}
+                                            className="text-white/90 hover:text-white transition-colors font-sans text-button tracking-tight"
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* NAVIGATION */}
+                    <div>
+                        <h3 className="text-white/60 text-xs uppercase tracking-wider font-sans mb-4">
+                            NAVIGATION
+                        </h3>
+                        <ul className="space-y-2">
+                            {navigationLinks.map((link) => (
+                                <li key={link.href}>
+                                    <Link
+                                        href={link.href}
+                                        className="text-white/90 hover:text-white transition-colors font-sans text-button tracking-tight"
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
-            </section>
+            </div>
+
+            {/* Bottom row: Copyright, Time, Location */}
+            <div className="pt-8 w-full">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-white/60 text-xs md:text-sm font-sans">
+                    {/* Bottom-left: Copyright */}
+                    <div className="order-1 md:order-none text-button">
+                        All rights reserved © 2025
+                    </div>
+
+                    {/* Bottom-center: Time */}
+                    <div className="order-2 md:order-none text-white/70 text-button">
+                        {currentTime || "Loading..."}
+                    </div>
+
+                    {/* Bottom-right: Location */}
+                    <div className="order-3 md:order-none text-button">
+                        Melbourne, AU
+                    </div>
+                </div>
+            </div>
         </footer>
     );
 }

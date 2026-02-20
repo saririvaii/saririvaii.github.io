@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import CTAButton from "./richTextComponents/Button";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { urlFor } from "@/lib/sanity";
 import type { Project } from "../../../sanity.types";
 
@@ -39,16 +39,16 @@ export default function ProjectCards({ project, imageLeft }: ProjectCardsProps) 
             </div>
 
             {/* Text Section */}
-            <div className={`col-span-3 flex flex-col gap-6 p-4 max-w-[80%] ${imageLeft ? 'order-2' : 'order-1'}`}>
+            <div className={`col-span-3 flex flex-col gap-6 p-4 max-w-[90%] ${imageLeft ? 'order-2' : 'order-1'}`}>
                 {/* Tags */}
                 {tags && (
-                    <p className="text-sm text-black-main/50 tracking-tight font-sans">
+                    <p className="text-button text-black-main/50 tracking-tight font-sans">
                         {tags}
                     </p>
                 )}
 
                 {/* Title */}
-                <h2 className="text-4xl tracking-tight text-black-main font-sans">
+                <h2 className="text-section-subtitle leading-7 text-black-main font-sans">
                     {project.title}
                 </h2>
 
@@ -74,8 +74,8 @@ export default function ProjectCards({ project, imageLeft }: ProjectCardsProps) 
                             variant="secondary"
                             target="_blank"
                             rel="noopener noreferrer"
-                            icon={ExternalLink}
-                            iconPosition="right"
+                            icon={ArrowUpRight}
+                            iconPosition="left"
                         >
                             View App Website
                         </CTAButton>

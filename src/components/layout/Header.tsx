@@ -20,7 +20,7 @@ export default function Header() {
                 {/* Logo/Brand */}
                 <Link
                     href="/"
-                    className="text-black-main/40 text-xl uppercase hover:opacity-80 transition-opacity col-span-2"
+                    className="text-black-main/40 text-body-small uppercase hover:opacity-80 transition-opacity col-span-2"
                 >
                     Sari Rivai
                 </Link>
@@ -31,7 +31,7 @@ export default function Header() {
                         <li key={item.href}>
                             <Link
                                 href={item.href}
-                                className="text-black-main/60 text-base hover:opacity-70 transition-opacity"
+                                className="text-black-main/60 text-caption hover:opacity-70 transition-opacity"
                             >
                                 {item.label}
                             </Link>

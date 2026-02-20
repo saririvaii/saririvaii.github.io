@@ -29,8 +29,10 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
     const getClassName = (baseClasses: string, customClasses?: string) => {
         if (!customClasses) return baseClasses;
 
-        // If customClasses already includes !important markers, keep as is
-        return `${baseClasses} ${customClasses}`;
+        // When custom classes are provided, use only the custom classes
+        // This prevents conflicts with default text size classes
+        // The custom classes should include all necessary styling
+        return customClasses;
     };
 
     const components: PortableTextComponents = {
@@ -50,7 +52,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                 <h1
                     className={getClassName(
                         "text-4xl lg:text-7xl font-sans tracking-tight mb-6 text-black-main [&:not(:first-child)]:mt-12",
-                        elementClassNames.h1,
+                        elementClassNames.h1 || "text-4xl lg:text-7xl font-sans tracking-tight mb-6 text-black-main [&:not(:first-child)]:mt-12",
                     )}
                 >
                     {children}

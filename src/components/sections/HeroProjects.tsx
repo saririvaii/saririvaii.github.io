@@ -28,7 +28,7 @@ export default function HeroProjects() {
 
     return (
         <section className="default-section">
-            <h2 className="text-5xl text-center text-black-main font-sans tracking-tight">
+            <h2 className="text-section-title text-center text-black-main font-sans tracking-tight">
                 Recent works that have <br />
                 significantly boosted business metrics.
             </h2>

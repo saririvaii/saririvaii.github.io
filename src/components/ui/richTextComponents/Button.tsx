@@ -23,7 +23,7 @@ export default function CTAButton({
 	className = "",
 }: LinkButtonProps) {
 	const baseStyles =
-		"font-sans flex items-center gap-2 rounded-lg px-5 py-3 text-sm tracking-tight transition-colors w-fit";
+		"font-sans flex items-center gap-2 rounded-lg px-4 py-2.5 text-button tracking-tight transition-colors w-fit";
 
 	const variantStyles = {
 		primary:
