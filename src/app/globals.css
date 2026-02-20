@@ -243,3 +243,32 @@ body {
         animation: pulse-glow 2s ease-in-out infinite;
     }
 }
+
+html.lenis {
+	height: auto;
+}
+
+.lenis.lenis-smooth {
+	scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+	overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+	overflow: hidden;
+}
+
+/* Disable pointer events on iframes during scroll for performance,
+   but exclude Stripe checkout iframes to maintain interactivity */
+.lenis.lenis-scrolling iframe:not(.stripe-checkout-container iframe) {
+	pointer-events: none;
+}
+
+/* Allow native scrolling within Cal.com Booker when Lenis is stopped */
+.lenis.lenis-stopped .calcom-atoms,
+.lenis.lenis-stopped .calcom-atoms * {
+	touch-action: auto !important;
+	overscroll-behavior: contain;
+}

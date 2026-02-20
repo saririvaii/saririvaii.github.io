@@ -1,26 +1,54 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { client, queries } from "@/lib/sanity";
 
 export function useSanityData<T>(query: string, params?: Record<string, any>) {
     const [data, setData] = useState<T | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<Error | null>(null);
+    const abortControllerRef = useRef<AbortController | null>(null);
 
     useEffect(() => {
+        // Abort previous request if it exists
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+        }
+
+        // Create new abort controller for this request
+        abortControllerRef.current = new AbortController();
+        const signal = abortControllerRef.current.signal;
+
         async function fetchData() {
             try {
                 setLoading(true);
                 const result = await client.fetch(query, params || {});
-                setData(result);
+                
+                // Only update state if request wasn't aborted
+                if (!signal.aborted) {
+                    setData(result);
+                    setError(null);
+                }
             } catch (err) {
-                setError(err as Error);
+                // Don't set error if request was aborted
+                if (!signal.aborted && err instanceof Error) {
+                    setError(err);
+                }
             } finally {
-                setLoading(false);
+                if (!signal.aborted) {
+                    setLoading(false);
+                }
             }
         }
 
         fetchData();
-    }, [query, params]);
+
+        // Cleanup: abort request on unmount or dependency change
+        return () => {
+            if (abortControllerRef.current) {
+                abortControllerRef.current.abort();
+            }
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [query]);
 
     return { data, loading, error };
 }

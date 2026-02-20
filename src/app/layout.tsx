@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 const manrope = Manrope({
     subsets: ["latin"],
@@ -31,7 +32,9 @@ export default function RootLayout({
             <body
                 className={`${manrope.variable} ${garamond.variable} ${manrope.className} bg-[#FBFAF8]`}
             >
-                {children}
+                <SmoothScrollProvider>
+                    {children}
+                </SmoothScrollProvider>
             </body>
         </html>
     );

@@ -1,10 +1,13 @@
 import { defineType, defineField } from "sanity";
+import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 
 export const project = defineType({
     name: "project",
     title: "Project",
     type: "document",
     fields: [
+        // Order rank field for drag-and-drop ordering
+        orderRankField({ type: "project" }),
         defineField({
             name: "title",
             title: "Title",
@@ -204,12 +207,6 @@ export const project = defineType({
                 layout: "tags",
             },
         }),
-        defineField({
-            name: "order",
-            title: "Display Order",
-            type: "number",
-            description: "Lower numbers appear first",
-        }),
     ],
     preview: {
         select: {
@@ -227,14 +224,7 @@ export const project = defineType({
         },
     },
     orderings: [
-        {
-            title: "Order, then Published",
-            name: "orderPublished",
-            by: [
-                { field: "order", direction: "asc" },
-                { field: "publishedAt", direction: "desc" },
-            ],
-        },
+        orderRankOrdering,
         {
             title: "Published Date",
             name: "publishedDate",

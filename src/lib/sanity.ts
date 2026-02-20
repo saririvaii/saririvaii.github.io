@@ -57,7 +57,7 @@ export const queries = {
   }`,
 
     // Project queries (consolidated with blog functionality)
-    projects: `*[_type == "project"] | order(order asc, publishedAt desc) {
+    projects: `*[_type == "project"] | order(orderRank asc) {
     _id,
     title,
     slug,
@@ -70,10 +70,10 @@ export const queries = {
     featured,
     publishedAt,
     tags,
-    order
+    orderRank
   }`,
 
-    featuredProjects: `*[_type == "project" && featured == true] | order(order asc, publishedAt desc) [0...3] {
+    featuredProjects: `*[_type == "project" && featured == true] | order(orderRank asc) [0...3] {
     _id,
     title,
     slug,
@@ -84,7 +84,8 @@ export const queries = {
     liveUrl,
     githubUrl,
     publishedAt,
-    tags
+    tags,
+    orderRank
   }`,
 
     project: `*[_type == "project" && slug.current == $slug][0] {

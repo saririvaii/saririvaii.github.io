@@ -11,7 +11,7 @@ export default function Hero() {
 
     return (
         <section className="default-section">
-            <div className="grid grid-cols-8 gap-16 pt-24">
+            <div className="grid grid-cols-8 gap-16 pt-32">
                 {/* Rich Text Title - spans 5 columns */}
                 <div className="col-span-8 md:col-span-5">
                     {hero?.title && (
