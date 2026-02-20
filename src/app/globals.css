@@ -85,7 +85,7 @@ body {
         @apply text-base sm:text-lg lg:text-base tracking-[-0.05em];
     }
     .text-body {
-        @apply text-sm sm:text-base lg:text-base tracking-[-0.05em];
+        @apply text-sm tracking-[-0.01em];
     }
     .text-body-small {
         @apply text-xs sm:text-sm lg:text-sm tracking-[-0.02em];

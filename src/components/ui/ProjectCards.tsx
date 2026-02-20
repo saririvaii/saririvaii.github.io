@@ -45,7 +45,7 @@ export default function ProjectCards({ project, imageLeft }: ProjectCardsProps) 
 
                 {/* Title */}
                 <h2 className="text-section-subtitle leading-7 text-black-main font-sans">
-                    {(project as any).heroTitle || project.title || 'Untitled Project'}
+                    {(project as any).heroTitle || 'Untitled Project'}
                 </h2>
 
                 {/* Description

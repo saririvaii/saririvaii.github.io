@@ -1,26 +1,17 @@
 'use client'
 
-import Image from 'next/image'
-import { urlFor } from '@/lib/sanity'
-
-type Stat = {
-  value: string
-  label: string
-}
+import CMSImage from '@/components/ui/richTextComponents/CMSImage'
+import { HeroStats, Project } from 'sanity.types'
 
 interface CaseStudyHeroProps {
   preTitle?: string
   title?: string
   description?: string
-  stats?: Stat[]
-  heroImage?: {
-    asset?: {
-      _ref?: string
-      _type?: string
-    }
-    alt?: string
-    [key: string]: any
-  }
+  stats?: Array<{
+    value: string
+    label: string
+  }>
+  heroImage?: Project['heroImage']
 }
 
 export default function CaseStudyHero({
@@ -69,7 +60,7 @@ export default function CaseStudyHero({
                         <div className="text-section-subtitle font-medium text-black-main font-sans tracking-[-0.02em]">
                         {s.value}
                         </div>
-                        <div className="mt-2 text-button leading-snug text-black-main/60 font-sans whitespace-pre-line">
+                        <div className="mt-1 text-button leading-snug text-black-main/60 font-sans whitespace-pre-line">
                         {s.label}
                         </div>
                     </div>
@@ -82,13 +73,13 @@ export default function CaseStudyHero({
         {heroImage && heroImage.asset && (
                 <div className="col-span-4">
                 <div className="overflow-hidden rounded-2xl bg-black-main/5">
-                    <Image
-                        src={urlFor(heroImage).width(1920).height(1080).url()}
-                    alt={heroImage.alt || 'Project hero image'}
-                    width={1920}
-                    height={1080}
-                    className="w-full h-full object-cover object-center"
-                />
+                    <CMSImage
+                        image={heroImage}
+                        width={1920}
+                        height={1080}
+                        className="w-full h-full object-cover object-center"
+                        priority
+                    />
                 </div>
             </div>
         )}

@@ -204,48 +204,10 @@ export type Project = {
         alt?: string;
         _type: "image";
     };
-    title?: string;
-    description?: string;
-    intro?: string;
-    content?: Array<
-        | {
-              children?: Array<{
-                  marks?: Array<string>;
-                  text?: string;
-                  _type: "span";
-                  _key: string;
-              }>;
-              style?: "normal" | "h2" | "h3" | "h4";
-              listItem?: "bullet" | "number";
-              markDefs?: Array<{
-                  href?: string;
-                  _type: "link";
-                  _key: string;
-              }>;
-              level?: number;
-              _type: "block";
-              _key: string;
-          }
-        | {
-              asset?: {
-                  _ref: string;
-                  _type: "reference";
-                  _weak?: boolean;
-                  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-              };
-              media?: unknown;
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              alt?: string;
-              _type: "image";
-              _key: string;
-          }
-        | {
-              url?: string;
-              title?: string;
-              _type: "youtubeVideo";
-              _key: string;
-          }
+    sections?: Array<
+        {
+            _key: string;
+        } & Section
     >;
     featuredImage?: {
         asset?: {
@@ -260,21 +222,6 @@ export type Project = {
         alt?: string;
         _type: "image";
     };
-    gallery?: Array<{
-        asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        alt?: string;
-        caption?: string;
-        _type: "image";
-        _key: string;
-    }>;
     technologies?: Array<string>;
     category?:
         | "web"
@@ -295,6 +242,23 @@ export type Slug = {
     _type: "slug";
     current?: string;
     source?: string;
+};
+
+export type Section = {
+    _type: "section";
+    title?: string;
+    contentBlocks?: Array<
+        {
+            _key: string;
+        } & ContentBlock
+    >;
+};
+
+export type ContentBlock = {
+    _type: "contentBlock";
+    headline?: string;
+    body?: RichText;
+    fullWidth?: boolean;
 };
 
 export type HeroStats = {
@@ -413,6 +377,8 @@ export type AllSanitySchemaTypes =
     | Skill
     | Project
     | Slug
+    | Section
+    | ContentBlock
     | HeroStats
     | SanityImagePaletteSwatch
     | SanityImagePalette

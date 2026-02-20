@@ -44,6 +44,16 @@ export default async function ProjectPost({ params }: ProjectPostProps) {
       }
     },
     slug,
+    sections[]{
+      _key,
+      title,
+      contentBlocks[]{
+        _key,
+        headline,
+        body,
+        fullWidth
+      }
+    },
     content,
     featuredImage,
     gallery,

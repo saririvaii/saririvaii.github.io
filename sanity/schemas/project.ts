@@ -1,6 +1,7 @@
 import { defineType, defineField } from "sanity";
 import { orderRankField, orderRankOrdering } from "@sanity/orderable-document-list";
 import { HeroStatsObject } from "./heroStats";
+import { SectionObject } from "./section";
 
 export const project = defineType({
     name: "project",
@@ -89,78 +90,11 @@ export const project = defineType({
         
         defineField({
             group: "content",
-            name: "content",
-            title: "Content",
+            name: "sections",
+            title: "Sections",
             type: "array",
-            of: [
-                {
-                    type: "block",
-                    styles: [
-                        { title: "Normal", value: "normal" },
-                        { title: "H2", value: "h2" },
-                        { title: "H3", value: "h3" },
-                        { title: "H4", value: "h4" },
-                    ],
-                    lists: [
-                        { title: "Bullet", value: "bullet" },
-                        { title: "Number", value: "number" },
-                    ],
-                    marks: {
-                        decorators: [
-                            { title: "Strong", value: "strong" },
-                            { title: "Emphasis", value: "em" },
-                            { title: "Code", value: "code" },
-                        ],
-                        annotations: [
-                            {
-                                name: "link",
-                                type: "object",
-                                title: "Link",
-                                fields: [
-                                    {
-                                        name: "href",
-                                        type: "url",
-                                        title: "URL",
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                },
-                {
-                    type: "image",
-                    options: { hotspot: true },
-                    fields: [
-                        {
-                            name: "alt",
-                            title: "Alt Text",
-                            type: "string",
-                        },
-                    ],
-                },
-                {
-                    type: "object",
-                    title: "YouTube Video",
-                    name: "youtubeVideo",
-                    fields: [
-                        {
-                            name: "url",
-                            title: "YouTube URL",
-                            type: "url",
-                            validation: (Rule) =>
-                                Rule.required().uri({
-                                    scheme: ["http", "https"],
-                                    allowRelative: false,
-                                }),
-                        },
-                        {
-                            name: "title",
-                            title: "Video Title",
-                            type: "string",
-                        },
-                    ],
-                },
-            ],
+            of: [SectionObject],
+            description: "Content sections with title and content blocks",
         }),
         defineField({
             group: "featureCard",

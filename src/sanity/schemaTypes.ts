@@ -8,10 +8,14 @@ import { SanityImage } from "../../sanity/schemas/rich-text/SanityImage";
 import { Button } from "../../sanity/schemas/rich-text/Button";
 import { richText } from "../../sanity/schemas/rich-text/richTextBlock";
 import { heroStats } from "../../sanity/schemas/heroStats";
+import { contentBlock } from "../../sanity/schemas/contentBlock";
+import { section } from "../../sanity/schemas/section";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     heroStats,
+    contentBlock,
+    section,
     project,
     skill,
     skillCategory,

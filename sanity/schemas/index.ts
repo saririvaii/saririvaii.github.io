@@ -8,6 +8,8 @@ import { SanityImage } from "./rich-text/SanityImage";
 import { Button } from "./rich-text/Button";
 import { richText } from "./rich-text/richTextBlock";
 import { heroStats } from "./heroStats";
+import { contentBlock } from "./contentBlock";
+import { section } from "./section";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
     project,
@@ -21,4 +23,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
     Button,
     richText,
     heroStats,
+    contentBlock,
+    section,
 ];

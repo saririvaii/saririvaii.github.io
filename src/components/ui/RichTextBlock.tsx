@@ -41,7 +41,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             normal: ({ children }) => (
                 <p
                     className={getClassName(
-                        "text-base lg:text-lg font-sans text-black-main [&:not(:last-child)]:mb-6",
+                        "text-body font-sans text-black-main [&:first-child]:mt-0 [&:not(:first-child)]:mt-6",
                         elementClassNames.p,
                     )}
                 >
@@ -51,8 +51,8 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             h1: ({ children }) => (
                 <h1
                     className={getClassName(
-                        "text-4xl lg:text-7xl font-sans tracking-tight mb-6 text-black-main [&:not(:first-child)]:mt-12",
-                        elementClassNames.h1 || "text-4xl lg:text-7xl font-sans tracking-tight mb-6 text-black-main [&:not(:first-child)]:mt-12",
+                        "text-section-title font-sans tracking-tight mb-6 text-black-main [&:not(:first-child)]:mt-12",
+                        elementClassNames.h1 || "text-section-title font-sans tracking-tight mb-6 text-black-main [&:not(:first-child)]:mt-12",
                     )}
                 >
                     {children}
@@ -61,7 +61,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             h2: ({ children }) => (
                 <h2
                     className={getClassName(
-                        "text-3xl lg:text-5xl font-sans font-semibold tracking-tight mb-5 text-black-main [&:not(:first-child)]:mt-10",
+                        "text-section-subtitle font-sans font-semibold tracking-tight mb-5 text-black-main [&:not(:first-child)]:mt-10",
                         elementClassNames.h2,
                     )}
                 >
@@ -71,7 +71,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             h3: ({ children }) => (
                 <h3
                     className={getClassName(
-                        "text-2xl lg:text-4xl font-sans font-semibold tracking-tight mb-4 text-black-main [&:not(:first-child)]:mt-8",
+                        "text-section-subtitle font-sans font-semibold tracking-tight mb-4 text-black-main [&:not(:first-child)]:mt-8",
                         elementClassNames.h3,
                     )}
                 >
@@ -81,7 +81,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             h4: ({ children }) => (
                 <h4
                     className={getClassName(
-                        "text-xl lg:text-2xl font-sans font-semibold tracking-tight mb-3 text-black-main",
+                        "text-body-large font-sans font-semibold tracking-tight mb-3 text-black-main",
                         elementClassNames.h4,
                     )}
                 >
@@ -91,7 +91,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             h5: ({ children }) => (
                 <h5
                     className={getClassName(
-                        "~text-lg/xl font-medium tracking-tight mb-2 font-ebGaramond",
+                        "text-caption font-medium tracking-tight mb-2 font-ebGaramond",
                         elementClassNames.h5,
                     )}
                 >
@@ -102,7 +102,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             footnote: ({ children }) => (
                 <p
                     className={getClassName(
-                        "text-black-main/60 ~text-sm/base [&:not(:last-child)]:mb-6",
+                        "text-button text-black-main/60 [&:not(:last-child)]:mb-6",
                         elementClassNames.footnote,
                     )}
                 >
@@ -172,7 +172,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                 }
 
                 return (
-                    <div className="my-8 w-full flex justify-center">
+                    <div className="w-full flex justify-center">
                         <CMSImage
                             image={value}
                             className="max-w-full h-auto rounded-md"
@@ -190,7 +190,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                 }
 
                 return (
-                    <div className="my-8 w-full flex justify-center">
+                    <div className="w-full flex justify-center">
                         <CMSImage image={value} className="w-full rounded-md" />
                     </div>
                 );
@@ -242,48 +242,15 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                     </div>
                 );
             },
-            // tabAccordion: ({ value }) => <TabAccordionBlock value={value} />,
-            // curriculaStages: ({ value }) => (
-            //     <CurriculaStagesBlock value={value} />
-            // ),
-            // labeledImages: ({ value }) => <ImageLabelGridBlock value={value} />,
-            // table: ({ value }) => <TableBlock value={value} />,
-            // principalsLetter: ({ value }) => (
-            //     <PrincipalsLetterBlock value={value} />
-            // ),
-            // staff: ({ value }) => <StaffBlock value={value} />,
-            // lightbox: ({ value }) => <LightboxBlock value={value.images} />,
-            // eventShowcase: ({ value }) => <EventShowcaseBlock value={value} />,
-            // richTextSectionTab: ({ value }) => (
-            //     <RichTextSectionTab value={value} />
-            // ),
-            // imageGrid: ({ value }) => <ImageGrid data={value} />,
-            // paragraphImage: ({ value }) => (
-            //     <ParagraphImageBlock value={value} />
-            // ),
-            // eventDetailCallout: ({ value }) => (
-            //     <div className="pb-8">
-            //         <EventDetailCalloutBlock value={value} />
-            //     </div>
-            // ),
-            // visionMission: ({ value }) => <VisionMissionBlock value={value} />,
-            // centeredRichText: ({ value }) => (
-            //     <CenteredRichTextBlock value={value} />
-            // ),
-            // embed: ({ value }) => <EmbedBlock value={value} />,
-            // sidebarForm: ({ value }) => <SidebarForm data={value} />,
-            // ecaOptions: ({ value }) => <EcaBlock value={value} />,
-            // richTextFeatureHighlight: ({ value }) => <FeatureHighlight value={value} />,
-            // richTextImageTextCard: ({ value }) => <ImageTextCardBlock value={value} />,
         },
         list: {
             bullet: ({ children }) => (
-                <ul className="mt-2 mb-4 ml-6 list-disc [&>li>ul]:list-disc [&>li>ul>li>ul]:list-disc space-y-2">
+                <ul className="text-body mt-2 mb-4 ml-6 list-disc [&>li>ul]:list-disc [&>li>ul>li>ul]:list-disc space-y-2">
                     {children}
                 </ul>
             ),
             number: ({ children }) => (
-                <ol className="mt-2 mb-4 ml-6 list-decimal [&>li>ol]:list-[lower-alpha] [&>li>ol>li>ol]:list-[lower-roman] space-y-2">
+                <ol className="text-body mt-2 mb-4 ml-6 list-decimal [&>li>ol]:list-[lower-alpha] [&>li>ol>li>ol]:list-[lower-roman] space-y-2">
                     {children}
                 </ol>
             ),
