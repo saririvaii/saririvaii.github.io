@@ -29,9 +29,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className="bg-[#FBFAF8]">
+        <html lang="en" className="bg-white-main">
             <body
-                className={`${manrope.variable} ${garamond.variable} ${manrope.className} bg-[#FBFAF8]`}
+                className={`${manrope.variable} ${garamond.variable} ${manrope.className} bg-white-main`}
             >
                 <SmoothScrollProvider>
                     <Header />

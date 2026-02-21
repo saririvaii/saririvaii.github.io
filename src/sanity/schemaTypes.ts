@@ -6,6 +6,7 @@ import { animatedHeroImage } from "../../sanity/schemas/heroImage";
 import { homePage } from "../../sanity/schemas/homePage";
 import { SanityImage } from "../../sanity/schemas/rich-text/SanityImage";
 import { Button } from "../../sanity/schemas/rich-text/Button";
+import { imageDescriptionCardItem, ImageDescriptionCard } from "../../sanity/schemas/rich-text/ImageDescriptionCard";
 import { richText } from "../../sanity/schemas/rich-text/richTextBlock";
 import { heroStats } from "../../sanity/schemas/heroStats";
 import { contentBlock } from "../../sanity/schemas/contentBlock";
@@ -14,6 +15,11 @@ import { section } from "../../sanity/schemas/section";
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     heroStats,
+    imageDescriptionCardItem,
+    ImageDescriptionCard,
+    SanityImage,
+    Button,
+    richText,
     contentBlock,
     section,
     project,
@@ -23,8 +29,5 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     hero,
     animatedHeroImage,
     homePage,
-    SanityImage,
-    Button,
-    richText,
   ],
 };

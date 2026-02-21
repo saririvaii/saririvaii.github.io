@@ -33,7 +33,7 @@ export default function Navigation() {
 
             <div className="w-[215px] border-s border-zinc-200 dark:border-zinc-800 flex md:block">
                 <Link
-                    className="hidden lg:flex h-full w-full items-center justify-center group transition-colors hover:bg-white hover:text-black"
+                    className="hidden lg:flex h-full w-full items-center justify-center group transition-colors hover:bg-white-main hover:text-black-main"
                     href="mailto:bysaririvai@gmail.com"
                 >
                     <span className="group font-medium flex items-center gap-4">

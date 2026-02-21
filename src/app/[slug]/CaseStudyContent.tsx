@@ -70,42 +70,52 @@ export default function CaseStudyContent({
     return sectionMeta.findIndex((meta) => meta.id === activeId)
   }, [sectionMeta, activeId])
 
-  // Track active section via IntersectionObserver
+  // Track active section via scroll position — deterministic, no IntersectionObserver flicker
   useEffect(() => {
     if (!sectionMeta.length) return
 
-    const els = sectionMeta
-      .map(({ id }) => document.getElementById(id))
-      .filter(Boolean) as HTMLElement[]
+    const handleScroll = () => {
+      const scrollY = window.scrollY
+      // Activation point: center of viewport (50% from top)
+      const viewportCenter = scrollY + window.innerHeight * 0.5
 
-    if (!els.length) return
+      let current = ''
+      let closestDistance = Infinity
+      let containingSection = ''
 
-    // We want a section to be considered "active" around the upper-middle of viewport
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // pick the entry closest to the top that is intersecting
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => (a.boundingClientRect.top ?? 0) - (b.boundingClientRect.top ?? 0))
-
-        if (visible[0]?.target?.id) {
-          setActiveId(visible[0].target.id)
-        } else {
-          // Clear active section when no sections are intersecting (e.g., in hero section)
-          setActiveId('')
+      for (const { id } of sectionMeta) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        
+        const rect = el.getBoundingClientRect()
+        const sectionTop = rect.top + scrollY
+        const sectionBottom = sectionTop + rect.height
+        const sectionCenter = sectionTop + rect.height * 0.5
+        
+        // Check if viewport center is within this section
+        if (viewportCenter >= sectionTop && viewportCenter <= sectionBottom) {
+          containingSection = id
         }
-      },
-      {
-        // This makes the "active band" feel like it matches your design:
-        // top portion counts more, bottom less.
-        root: null,
-        rootMargin: `-${scrollOffsetPx + 12}px 0px -55% 0px`,
-        threshold: [0.01, 0.1, 0.2],
+        
+        // Calculate distance from section center to viewport center
+        const distance = Math.abs(sectionCenter - viewportCenter)
+        if (distance < closestDistance) {
+          closestDistance = distance
+          current = id
+        }
       }
-    )
+      
+      // Prioritize section that contains the viewport center
+      setActiveId(containingSection || current)
+    }
 
-    els.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
   }, [sectionMeta, scrollOffsetPx])
 
   if (!sections?.length) return null
@@ -128,7 +138,7 @@ export default function CaseStudyContent({
             className={[
               'rounded-xl transition-all duration-300 ease-out',
               navHovered 
-                ? 'bg-white/60 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.08)] px-3 py-4' 
+                ? 'bg-white-main/60 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.08)] px-3 py-4' 
                 : 'bg-transparent px-0 py-0',
             ].join(' ')}
           >
@@ -137,9 +147,9 @@ export default function CaseStudyContent({
                 const isActive = id === activeId
                 const isRead = activeIndex !== -1 && index < activeIndex
 
-                let dashWidth = 'w-[2px]'
+                let dashWidth = 'w-[4px]'
                 if (isActive) dashWidth = 'w-10'
-                else if (isRead) dashWidth = 'w-[7px]'
+                else if (isRead) dashWidth = 'w-[10px]'
 
                 return (
                     <button
@@ -227,7 +237,7 @@ export default function CaseStudyContent({
                     return (
                       <div key={key} className="flex flex-col md:grid md:grid-cols-12 gap-4 md:gap-x-8 md:gap-y-6">
                         {/* headline left: col-span-3 */}
-                        <div className="w-full md:col-span-5 md:pr-16">
+                        <div className="w-full md:col-span-4 md:pr-12">
                           {block.headline ? (
                             <h3 className="text-2xl md:text-3xl leading-[0.95] tracking-[-0.03em] text-black">
                               {block.headline}
@@ -236,7 +246,7 @@ export default function CaseStudyContent({
                         </div>
 
                         {/* body right: start col 4 span 5 */}
-                        <div className="w-full md:col-start-6 md:col-span-7">
+                        <div className="w-full md:col-start-5 md:col-span-8">
                           <div className="prose prose-neutral max-w-none">
                             <RichTextBlock value={block.body ?? []} />
                           </div>

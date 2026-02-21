@@ -11,7 +11,7 @@ export default function Header() {
         { label: "Works", href: "/works" },
         { label: "Playground", href: "/playground" },
         { label: "About", href: "/about" },
-        { label: "Let's Chat", href: "/contact" },
+        { label: "Let's Chat", href: "mailto:bysaririvai@gmail.com" },
     ];
 
     return (

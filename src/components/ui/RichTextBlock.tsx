@@ -2,6 +2,7 @@ import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { TypedObject } from "@portabletext/types";
 import Link from "next/link";
 import CMSImage from "./richTextComponents/CMSImage";
+import ImageDescriptionCard from "./richTextComponents/ImageDescriptionCard";
 
 interface ElementClassNames {
     p?: string;
@@ -51,8 +52,8 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             h1: ({ children }) => (
                 <h1
                     className={getClassName(
-                        "text-section-title font-sans tracking-tight mb-6 text-black-main [&:not(:first-child)]:mt-12",
-                        elementClassNames.h1 || "text-section-title font-sans tracking-tight mb-6 text-black-main [&:not(:first-child)]:mt-12",
+                        "text-section-title font-sans tracking-tight mb-0 text-black-main [&:not(:first-child)]:mt-12",
+                        elementClassNames.h1 || "text-section-title font-sans tracking-tight mb-0 text-black-main [&:not(:first-child)]:mt-12",
                     )}
                 >
                     {children}
@@ -61,7 +62,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             h2: ({ children }) => (
                 <h2
                     className={getClassName(
-                        "text-section-subtitle font-sans font-semibold tracking-tight mb-5 text-black-main [&:not(:first-child)]:mt-10",
+                        "text-section-subtitle font-sans font-semibold tracking-tight mb-0 text-black-main [&:not(:first-child)]:mt-10",
                         elementClassNames.h2,
                     )}
                 >
@@ -71,7 +72,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             h3: ({ children }) => (
                 <h3
                     className={getClassName(
-                        "text-section-subtitle font-sans font-semibold tracking-tight mb-4 text-black-main [&:not(:first-child)]:mt-8",
+                        "text-section-subtitle font-sans font-semibold tracking-tight mb-0 text-black-main [&:not(:first-child)]:mt-8",
                         elementClassNames.h3,
                     )}
                 >
@@ -81,7 +82,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             h4: ({ children }) => (
                 <h4
                     className={getClassName(
-                        "text-body-large font-sans font-semibold tracking-tight mb-3 text-black-main",
+                            "text-body-large font-sans font-semibold tracking-tight mb-0 text-black-main",
                         elementClassNames.h4,
                     )}
                 >
@@ -91,7 +92,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             h5: ({ children }) => (
                 <h5
                     className={getClassName(
-                        "text-caption font-medium tracking-tight mb-2 font-ebGaramond",
+                        "text-caption font-medium tracking-tight mb-0 font-ebGaramond",
                         elementClassNames.h5,
                     )}
                 >
@@ -102,7 +103,7 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             footnote: ({ children }) => (
                 <p
                     className={getClassName(
-                        "text-button text-black-main/60 [&:not(:last-child)]:mb-6",
+                        "text-button text-black-main/60 [&:not(:last-child)]:mb-0",
                         elementClassNames.footnote,
                     )}
                 >
@@ -172,10 +173,10 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                 }
 
                 return (
-                    <div className="w-full flex justify-center">
+                    <div className="!m-0 !my-0">
                         <CMSImage
                             image={value}
-                            className="max-w-full h-auto rounded-md"
+                            className="w-full h-auto !m-0 !rounded-md shadow-[0_8px_20px_rgba(0,0,0,0.04)]"
                         />
                     </div>
                 );
@@ -190,8 +191,8 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                 }
 
                 return (
-                    <div className="w-full flex justify-center">
-                        <CMSImage image={value} className="w-full rounded-md" />
+                    <div className="!m-0 !my-0">
+                        <CMSImage image={value} className="w-full h-auto !m-0 !rounded-md shadow-[0_8px_20px_rgba(0,0,0,0.04)]" />
                     </div>
                 );
             },
@@ -241,6 +242,13 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                         </Link>
                     </div>
                 );
+            },
+            imageDescriptionCard: ({ value }) => {
+                if (!value?.cards || !Array.isArray(value.cards) || value.cards.length === 0) {
+                    return null;
+                }
+
+                return <ImageDescriptionCard cards={value.cards} numbered={value.numbered} />;
             },
         },
         list: {

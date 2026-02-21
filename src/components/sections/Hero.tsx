@@ -11,7 +11,7 @@ export default function Hero() {
 
     return (
         <section className="default-section">
-            <div className="grid grid-cols-8 gap-8 md:gap-16 pt-32 md:pt-12">
+            <div className="grid grid-cols-8 gap-8 md:gap-16 pt-32 md:pt-16">
                 {/* Rich Text Title - spans 5 columns */}
                 <div className="col-span-8 md:col-span-5">
                     {hero?.title && (
@@ -20,7 +20,7 @@ export default function Hero() {
                             elementClassNames={{
                                 h1: "text-hero-title text-black-main mb-6 [&:not(:first-child)]:mt-12",
                                 p: "text-caption text-black-main/40 font-sans tracking-tight [&:not(:last-child)]:mb-6",
-                                link: "text-black-main/40 font-sans tracking-tight",
+                                link: "text-black-main/40 font-sans tracking-tight !underline",
                             }}
                         />
                     )}

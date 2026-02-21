@@ -13,56 +13,6 @@
  */
 
 // Source: schema.json
-export type RichText = Array<
-    | {
-          children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
-              _key: string;
-          }>;
-          style?: "normal" | "h1" | "h2" | "h3" | "h4";
-          listItem?: "bullet" | "number";
-          markDefs?: Array<{
-              url?: string;
-              newTab?: boolean;
-              _type: "link";
-              _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-      }
-    | ({
-          _key: string;
-      } & SanityImage)
-    | ({
-          _key: string;
-      } & Button)
->;
-
-export type Button = {
-    _type: "button";
-    text?: string;
-    url?: string;
-    newTab?: boolean;
-    style?: "primary" | "secondary";
-};
-
-export type SanityImage = {
-    _type: "sanityImage";
-    asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-};
-
 export type HomePage = {
     _id: string;
     _type: "homePage";
@@ -143,6 +93,37 @@ export type SanityImageHotspot = {
     height?: number;
     width?: number;
 };
+
+export type RichText = Array<
+    | {
+          children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+          }>;
+          style?: "normal" | "h1" | "h2" | "h3" | "h4" | "footnote";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+              url?: string;
+              newTab?: boolean;
+              _type: "link";
+              _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+      }
+    | ({
+          _key: string;
+      } & SanityImage)
+    | ({
+          _key: string;
+      } & Button)
+    | ({
+          _key: string;
+      } & ImageDescriptionCard)
+>;
 
 export type SkillsPage = {
     _id: string;
@@ -261,6 +242,57 @@ export type ContentBlock = {
     fullWidth?: boolean;
 };
 
+export type Button = {
+    _type: "button";
+    text?: string;
+    url?: string;
+    newTab?: boolean;
+    style?: "primary" | "secondary";
+};
+
+export type SanityImage = {
+    _type: "sanityImage";
+    asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+};
+
+export type ImageDescriptionCard = {
+    _type: "imageDescriptionCard";
+    numbered?: boolean;
+    cards?: Array<
+        {
+            _key: string;
+        } & ImageDescriptionCardItem
+    >;
+};
+
+export type ImageDescriptionCardItem = {
+    _type: "imageDescriptionCardItem";
+    upperText?: string;
+    image?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+    };
+    bottomText?: RichText;
+};
+
 export type HeroStats = {
     _type: "heroStats";
     number?: string;
@@ -364,14 +396,12 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
-    | RichText
-    | Button
-    | SanityImage
     | HomePage
     | Hero
     | AnimatedHeroImage
     | SanityImageCrop
     | SanityImageHotspot
+    | RichText
     | SkillsPage
     | SkillCategory
     | Skill
@@ -379,6 +409,10 @@ export type AllSanitySchemaTypes =
     | Slug
     | Section
     | ContentBlock
+    | Button
+    | SanityImage
+    | ImageDescriptionCard
+    | ImageDescriptionCardItem
     | HeroStats
     | SanityImagePaletteSwatch
     | SanityImagePalette

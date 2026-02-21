@@ -6,6 +6,7 @@ import { animatedHeroImage } from "./heroImage";
 import { homePage } from "./homePage";
 import { SanityImage } from "./rich-text/SanityImage";
 import { Button } from "./rich-text/Button";
+import { ImageDescriptionCard, imageDescriptionCardItem } from "./rich-text/ImageDescriptionCard";
 import { richText } from "./rich-text/richTextBlock";
 import { heroStats } from "./heroStats";
 import { contentBlock } from "./contentBlock";
@@ -21,6 +22,8 @@ export const schemaTypes: SchemaTypeDefinition[] = [
     homePage,
     SanityImage,
     Button,
+    ImageDescriptionCard,
+    imageDescriptionCardItem,
     richText,
     heroStats,
     contentBlock,

@@ -113,7 +113,7 @@ export default function CMSImage({
             alt={sanityImage.alt || ""}
             height={imageHeight}
             width={imageWidth}
-            className={`${className} object-cover transition-all`}
+            className={className}
             priority={priority}
             style={style}
             loading={loading}

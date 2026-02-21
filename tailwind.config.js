@@ -13,7 +13,7 @@ module.exports = {
       colors: {
         // Main color palette
         'black-main': '#1A1A1A',
-        'white-main': '#FBFAF8',
+        'white-main': '#F5F5F5',
         'accent-primary': '#484C18',
         // Legacy support
         background: 'var(--background)',
