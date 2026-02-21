@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { urlFor } from '@/lib/sanity'
+import { useLenis } from '@/components/SmoothScrollProvider'
 
 interface ShowcaseItem {
     _key?: string
@@ -22,6 +23,10 @@ export default function ScrollingShowcase({ backgroundColor, items }: ScrollingS
     const scrollRef = useRef<HTMLDivElement>(null)
     const [thumbLeft, setThumbLeft] = useState(0)
     const [thumbWidth, setThumbWidth] = useState(100)
+    const lenis = useLenis()
+    // Keep a ref so the wheel handler always sees the latest instance
+    const lenisRef = useRef(lenis)
+    useEffect(() => { lenisRef.current = lenis }, [lenis])
 
     useEffect(() => {
         const el = scrollRef.current
@@ -35,15 +40,35 @@ export default function ScrollingShowcase({ backgroundColor, items }: ScrollingS
             setThumbLeft(maxScroll > 0 ? (scrollLeft / maxScroll) * (1 - ratio) * 100 : 0)
         }
 
+        // Lock gesture direction for the lifetime of a single trackpad gesture
+        let direction: 'h' | 'v' | null = null
+        let dirTimer: ReturnType<typeof setTimeout>
+
         const onWheel = (e: WheelEvent) => {
-            const absDeltaX = Math.abs(e.deltaX)
-            const absDeltaY = Math.abs(e.deltaY)
-            // Only own the event when horizontal intent is unambiguous
-            if (absDeltaX > absDeltaY && absDeltaX > 3) {
-                e.preventDefault() // Lenis checks defaultPrevented, so this stops page scroll
-                el.scrollLeft += e.deltaX
+            const ax = Math.abs(e.deltaX)
+            const ay = Math.abs(e.deltaY)
+
+            // Determine direction on first significant movement
+            if (!direction) {
+                if (ax > ay && ax > 3) direction = 'h'
+                else if (ay > ax && ay > 3) direction = 'v'
+                else return
             }
-            // All other events fall through untouched — Lenis handles vertical normally
+
+            // Reset lock when gesturing stops
+            clearTimeout(dirTimer)
+            dirTimer = setTimeout(() => { direction = null }, 100)
+
+            if (direction === 'h') {
+                e.preventDefault()
+                el.scrollLeft += e.deltaX
+            } else {
+                // Forward vertical to Lenis so it stays smooth
+                // data-lenis-prevent on the outer div means Lenis won't auto-handle
+                // these events, so we drive it manually here
+                const l = lenisRef.current
+                if (l) l.scrollTo(window.scrollY + e.deltaY)
+            }
         }
 
         updateThumb()
@@ -51,6 +76,7 @@ export default function ScrollingShowcase({ backgroundColor, items }: ScrollingS
         el.addEventListener('wheel', onWheel, { passive: false })
 
         return () => {
+            clearTimeout(dirTimer)
             el.removeEventListener('scroll', updateThumb)
             el.removeEventListener('wheel', onWheel)
         }
@@ -59,8 +85,11 @@ export default function ScrollingShowcase({ backgroundColor, items }: ScrollingS
     if (!items?.length) return null
 
     return (
+        // data-lenis-prevent stops Lenis from auto-processing wheel events from
+        // within this component; we handle routing manually in onWheel above
         <div
-            className="rounded-md py-4 overflow-hidden"
+            data-lenis-prevent
+            className="rounded-md pb-2 pt-6 overflow-hidden"
             style={{ backgroundColor: backgroundColor || '#f0ede8' }}
         >
             {/* Scroll track — no horizontal padding on the outer so content reaches the edges.

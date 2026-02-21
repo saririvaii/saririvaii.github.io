@@ -1,15 +1,18 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Lenis from '@studio-freight/lenis'
+
+const LenisContext = createContext<Lenis | null>(null)
+export const useLenis = () => useContext(LenisContext)
 
 export default function SmoothScrollProvider({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const lenisRef = useRef<Lenis | null>(null)
+  const [lenis, setLenis] = useState<Lenis | null>(null)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -18,25 +21,26 @@ export default function SmoothScrollProvider({
       return
     }
 
-    const lenis = new Lenis({
-      duration: 1.2, // scroll smoothness
+    const lenisInstance = new Lenis({
+      duration: 1.2,
       smoothWheel: true,
       wheelMultiplier: 1,
     })
 
-    lenisRef.current = lenis
+    setLenis(lenisInstance)
 
     function raf(time: number) {
-      lenis.raf(time)
+      lenisInstance.raf(time)
       requestAnimationFrame(raf)
     }
 
     requestAnimationFrame(raf)
 
     return () => {
-      lenis.destroy()
+      lenisInstance.destroy()
+      setLenis(null)
     }
   }, [pathname])
 
-  return <>{children}</>
+  return <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>
 }
