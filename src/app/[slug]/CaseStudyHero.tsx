@@ -34,7 +34,7 @@ export default function CaseStudyHero({
                     )}
 
                     {title && (
-                    <h1 className="text-hero-title-small font-[400] text-black-main">
+                    <h1 className="text-hero-title-small font-[400] lg:leading-[1] text-black-main">
                         {title.split('\n').map((line, idx) => (
                         <span key={idx} className="block">
                             {line}

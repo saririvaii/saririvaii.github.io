@@ -133,6 +133,9 @@ export type RichText = Array<
     | ({
           _key: string;
       } & ScrollingShowcase)
+    | ({
+          _key: string;
+      } & ImageColumns)
 >;
 
 export type SkillsPage = {
@@ -272,6 +275,32 @@ export type SanityImage = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+};
+
+export type ImageColumns = {
+    _type: "imageColumns";
+    images?: Array<
+        {
+            _key: string;
+        } & ImageColumnsItem
+    >;
+};
+
+export type ImageColumnsItem = {
+    _type: "imageColumnsItem";
+    image?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+    };
 };
 
 export type ScrollingShowcase = {
@@ -449,6 +478,8 @@ export type AllSanitySchemaTypes =
     | ContentBlock
     | Button
     | SanityImage
+    | ImageColumns
+    | ImageColumnsItem
     | ScrollingShowcase
     | ScrollingShowcaseItem
     | ImageDescriptionCard

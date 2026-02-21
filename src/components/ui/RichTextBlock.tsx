@@ -4,6 +4,7 @@ import Link from "next/link";
 import CMSImage from "./richTextComponents/CMSImage";
 import ImageDescriptionCard from "./richTextComponents/ImageDescriptionCard";
 import ScrollingShowcase from "./richTextComponents/ScrollingShowcase";
+import ImageColumns from "./richTextComponents/ImageColumns";
 
 interface ElementClassNames {
     p?: string;
@@ -266,6 +267,10 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                         items={value.items}
                     />
                 );
+            },
+            imageColumns: ({ value }) => {
+                if (!value?.images?.length) return null;
+                return <ImageColumns images={value.images} />;
             },
         },
         list: {

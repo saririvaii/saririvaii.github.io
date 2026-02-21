@@ -8,6 +8,7 @@ import { SanityImage } from "../../sanity/schemas/rich-text/SanityImage";
 import { Button } from "../../sanity/schemas/rich-text/Button";
 import { imageDescriptionCardItem, ImageDescriptionCard } from "../../sanity/schemas/rich-text/ImageDescriptionCard";
 import { scrollingShowcaseItem, scrollingShowcase } from "../../sanity/schemas/rich-text/ScrollingShowcase";
+import { imageColumnsItem, imageColumns } from "../../sanity/schemas/rich-text/ImageColumns";
 import { richText } from "../../sanity/schemas/rich-text/richTextBlock";
 import { heroStats } from "../../sanity/schemas/heroStats";
 import { contentBlock } from "../../sanity/schemas/contentBlock";
@@ -20,6 +21,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     ImageDescriptionCard,
     scrollingShowcaseItem,
     scrollingShowcase,
+    imageColumnsItem,
+    imageColumns,
     SanityImage,
     Button,
     richText,

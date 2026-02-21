@@ -3,6 +3,7 @@ import { SanityImageObject } from "./SanityImage";
 import { ButtonObject } from "./Button";
 import { ImageDescriptionCardObject } from "./ImageDescriptionCard";
 import { ScrollingShowcaseObject } from "./ScrollingShowcase";
+import { ImageColumnsObject } from "./ImageColumns";
 
 // Define the richText type that can be reused
 export const richText = defineType({
@@ -73,6 +74,8 @@ export const richText = defineType({
         ImageDescriptionCardObject,
         // Scrolling Showcase component
         ScrollingShowcaseObject,
+        // Image Columns component
+        ImageColumnsObject,
     ],
 });
 
