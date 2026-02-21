@@ -102,7 +102,14 @@ export type RichText = Array<
               _type: "span";
               _key: string;
           }>;
-          style?: "normal" | "h1" | "h2" | "h3" | "h4" | "footnote";
+          style?:
+              | "normal"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "footnote"
+              | "blockquote";
           listItem?: "bullet" | "number";
           markDefs?: Array<{
               url?: string;
@@ -123,6 +130,9 @@ export type RichText = Array<
     | ({
           _key: string;
       } & ImageDescriptionCard)
+    | ({
+          _key: string;
+      } & ScrollingShowcase)
 >;
 
 export type SkillsPage = {
@@ -262,6 +272,34 @@ export type SanityImage = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+};
+
+export type ScrollingShowcase = {
+    _type: "scrollingShowcase";
+    backgroundColor?: string;
+    items?: Array<
+        {
+            _key: string;
+        } & ScrollingShowcaseItem
+    >;
+};
+
+export type ScrollingShowcaseItem = {
+    _type: "scrollingShowcaseItem";
+    title?: string;
+    image?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+    };
 };
 
 export type ImageDescriptionCard = {
@@ -411,6 +449,8 @@ export type AllSanitySchemaTypes =
     | ContentBlock
     | Button
     | SanityImage
+    | ScrollingShowcase
+    | ScrollingShowcaseItem
     | ImageDescriptionCard
     | ImageDescriptionCardItem
     | HeroStats

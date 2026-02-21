@@ -2,6 +2,7 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 import { SanityImageObject } from "./SanityImage";
 import { ButtonObject } from "./Button";
 import { ImageDescriptionCardObject } from "./ImageDescriptionCard";
+import { ScrollingShowcaseObject } from "./ScrollingShowcase";
 
 // Define the richText type that can be reused
 export const richText = defineType({
@@ -21,6 +22,7 @@ export const richText = defineType({
                 { title: "Heading 3", value: "h3" },
                 { title: "Heading 4", value: "h4" },
                 { title: "Footnote", value: "footnote" },
+                { title: "Quote", value: "blockquote" },
             ],
             marks: {
                 decorators: [
@@ -69,6 +71,8 @@ export const richText = defineType({
         ButtonObject,
         // Image Description Cards component
         ImageDescriptionCardObject,
+        // Scrolling Showcase component
+        ScrollingShowcaseObject,
     ],
 });
 

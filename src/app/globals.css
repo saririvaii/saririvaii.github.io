@@ -35,7 +35,7 @@ body {
    * Default Section Styles
    */
     .default-section {
-        @apply flex relative flex-col gap-12 items-center px-4 md:px-12 py-12 w-full md:py-24 md:gap-16;
+        @apply flex relative flex-col gap-12 items-center px-4 md:px-8 py-12 w-full md:py-24 md:gap-16;
     }
     .default-hero-section {
         @apply default-section min-h-[100dvh];

@@ -17,7 +17,7 @@ export default function Header() {
     return (
         <header className="fixed top-0 left-0 right-0 z-50 font-sans">
             {/* <div className="default-section py-6 backdrop-blur-md bg-gradient-to-b from-white-main to-white-main/0"> */}
-            <div className="default-section py-6 bg-white-main">
+            <div className="default-section py-3 bg-white-main">
                 <nav className="w-full flex md:col-span-full md:grid md:gap-4 md:grid-cols-8 items-center justify-between">
                 {/* Logo/Brand */}
                 <Link

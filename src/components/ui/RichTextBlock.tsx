@@ -3,6 +3,7 @@ import { TypedObject } from "@portabletext/types";
 import Link from "next/link";
 import CMSImage from "./richTextComponents/CMSImage";
 import ImageDescriptionCard from "./richTextComponents/ImageDescriptionCard";
+import ScrollingShowcase from "./richTextComponents/ScrollingShowcase";
 
 interface ElementClassNames {
     p?: string;
@@ -109,6 +110,13 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                 >
                     {children}
                 </p>
+            ),
+            blockquote: ({ children }) => (
+                <div className="p-6 bg-black-main/5 my-6 rounded-xl">
+                    <p className="text-body font-sans text-black-main m-0 ">
+                        {children}
+                    </p>
+                </div>
             ),
         },
         marks: {
@@ -249,6 +257,15 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
                 }
 
                 return <ImageDescriptionCard cards={value.cards} numbered={value.numbered} />;
+            },
+            scrollingShowcase: ({ value }) => {
+                if (!value?.items?.length) return null;
+                return (
+                    <ScrollingShowcase
+                        backgroundColor={value.backgroundColor}
+                        items={value.items}
+                    />
+                );
             },
         },
         list: {
