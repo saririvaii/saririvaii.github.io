@@ -1,6 +1,8 @@
 import { client } from "@/lib/sanity";
 import ProjectClient from "./ProjectClient";
 
+export const revalidate = 3600;
+
 // Generate static params for all projects
 export async function generateStaticParams() {
     const projects = await client.fetch(`*[_type == "project"] {

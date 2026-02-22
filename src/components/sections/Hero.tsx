@@ -1,13 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import RichTextBlock from "@/components/ui/RichTextBlock";
 import AnimatedHeroImage from "@/components/ui/AnimatedHeroImage";
-import { useHero } from "@/hooks/useSanityData";
-import type { Hero } from "../../../sanity.types";
 
-export default function Hero() {
-    const { data: hero } = useHero() as { data: Hero | null };
+export default function Hero({ hero }: { hero: any }) {
 
     return (
         <section className="default-section">
