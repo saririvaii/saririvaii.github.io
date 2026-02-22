@@ -53,6 +53,12 @@ export default function CaseStudyContent({
 }: CaseStudyContentProps) {
   const [activeId, setActiveId] = useState<string>('')
   const [navHovered, setNavHovered] = useState(false)
+  const [navPeeking, setNavPeeking] = useState(true)
+
+  useEffect(() => {
+    const t = setTimeout(() => setNavPeeking(false), 3000)
+    return () => clearTimeout(t)
+  }, [])
 
   // Build ids once
   const sectionMeta = useMemo(() => {
@@ -118,6 +124,8 @@ export default function CaseStudyContent({
     }
   }, [sectionMeta, scrollOffsetPx])
 
+  const navOpen = navHovered || navPeeking
+
   if (!sections?.length) return null
 
   return (
@@ -129,7 +137,7 @@ export default function CaseStudyContent({
             'pointer-events-auto',
             'fixed right-8 top-1/2 -translate-y-1/2 z-50',
             'transition-all duration-300 ease-out',
-            navHovered ? 'w-[160px]' : 'w-[38px]',
+            navOpen ? 'w-[160px]' : 'w-[38px]',
           ].join(' ')}
           onMouseEnter={() => setNavHovered(true)}
           onMouseLeave={() => setNavHovered(false)}
@@ -137,12 +145,12 @@ export default function CaseStudyContent({
           <div
             className={[
               'rounded-xl transition-all duration-300 ease-out',
-              navHovered 
-                ? 'bg-white-main/60 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.08)] px-3 py-4' 
+              navOpen
+                ? 'bg-white-main/60 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.08)] px-3 py-4'
                 : 'bg-transparent px-0 py-0',
             ].join(' ')}
           >
-            <nav className={navHovered ? 'flex flex-col gap-0.5 items-end' : 'flex flex-col items-end space-y-[1px]'}>
+            <nav className={navOpen ? 'flex flex-col gap-0.5 items-end' : 'flex flex-col items-end space-y-[1px]'}>
             {sectionMeta.map(({ id, title, index }) => {
                 const isActive = id === activeId
                 const isRead = activeIndex !== -1 && index < activeIndex
@@ -158,14 +166,14 @@ export default function CaseStudyContent({
                         onClick={() => scrollToId(id, scrollOffsetPx)}
                         className={[
                         'group flex items-center',
-                        navHovered 
-                            ? 'justify-end py-0.5' 
+                        navOpen
+                            ? 'justify-end py-0.5'
                             : 'relative justify-end h-[7px] p-0 m-0 leading-none',
                         ].join(' ')}
                         aria-current={isActive ? 'true' : 'false'}
                     >
-                        {/* dash - only show when not hovered */}
-                        {!navHovered && (
+                        {/* dash — only show when collapsed */}
+                        {!navOpen && (
                         <span
                             className={[
                                 'block h-[1px] bg-black/90 transition-all duration-500 ease-out',
@@ -178,8 +186,8 @@ export default function CaseStudyContent({
                         <span
                         className={[
                             'whitespace-nowrap tracking-[-0.01em] transition-all duration-300 ease-out',
-                            navHovered 
-                                ? 'opacity-100 text-xs text-right' 
+                            navOpen
+                                ? 'opacity-100 text-xs text-right'
                                 : 'absolute right-0 top-1/2 -translate-y-1/2 opacity-0 translate-x-0 pointer-events-none',
                             'group-hover:line-through',
                             isActive ? 'text-black' : 'text-black/60',

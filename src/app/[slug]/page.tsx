@@ -50,7 +50,18 @@ export default async function ProjectPost({ params }: ProjectPostProps) {
       contentBlocks[]{
         _key,
         headline,
-        body,
+        body[]{
+          ...,
+          _type == "videoBlock" => {
+            ...,
+            video {
+              ...,
+              asset-> {
+                url
+              }
+            }
+          }
+        },
         fullWidth
       }
     },

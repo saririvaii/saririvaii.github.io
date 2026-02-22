@@ -136,6 +136,9 @@ export type RichText = Array<
     | ({
           _key: string;
       } & ImageColumns)
+    | ({
+          _key: string;
+      } & VideoBlock)
 >;
 
 export type SkillsPage = {
@@ -253,6 +256,21 @@ export type ContentBlock = {
     headline?: string;
     body?: RichText;
     fullWidth?: boolean;
+};
+
+export type VideoBlock = {
+    _type: "videoBlock";
+    video?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        media?: unknown;
+        _type: "file";
+    };
+    caption?: string;
 };
 
 export type Button = {
@@ -476,6 +494,7 @@ export type AllSanitySchemaTypes =
     | Slug
     | Section
     | ContentBlock
+    | VideoBlock
     | Button
     | SanityImage
     | ImageColumns

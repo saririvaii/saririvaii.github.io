@@ -5,6 +5,7 @@ import CMSImage from "./richTextComponents/CMSImage";
 import ImageDescriptionCard from "./richTextComponents/ImageDescriptionCard";
 import ScrollingShowcase from "./richTextComponents/ScrollingShowcase";
 import ImageColumns from "./richTextComponents/ImageColumns";
+import VideoBlock from "./richTextComponents/VideoBlock";
 
 interface ElementClassNames {
     p?: string;
@@ -271,6 +272,10 @@ const EnhancedPortableTextBlock: React.FC<PortableTextBlockProps> = ({
             imageColumns: ({ value }) => {
                 if (!value?.images?.length) return null;
                 return <ImageColumns images={value.images} />;
+            },
+            videoBlock: ({ value }) => {
+                const url = value?.video?.asset?.url;
+                return <VideoBlock url={url} caption={value?.caption} />;
             },
         },
         list: {
