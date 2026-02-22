@@ -47,7 +47,7 @@ export default function WorksPage() {
         <main className="pt-24">
             <section className="default-section">
                 <h1 className="text-section-title text-center text-black-main font-sans tracking-tight mb-12 md:mb-16">
-                    All works that I'm proud of.
+                    All works that I&apos;m proud of.
                 </h1>
                 <div className="space-y-10 md:space-y-16">
                     {uniqueProjects.map((project, index) => {
