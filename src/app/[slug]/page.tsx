@@ -1,31 +1,59 @@
-import { client } from '@/lib/sanity'
-import ProjectClient from './ProjectClient'
+import { client } from "@/lib/sanity";
+import ProjectClient from "./ProjectClient";
 
 // Generate static params for all projects
 export async function generateStaticParams() {
-  const projects = await client.fetch(`*[_type == "project"] {
+    const projects = await client.fetch(`*[_type == "project"] {
     "slug": slug.current
-  }`)
-  
-  return projects.map((project: any) => ({
-    slug: project.slug,
-  }))
+  }`);
+
+    return projects.map((project: any) => ({
+        slug: project.slug,
+    }));
 }
 
 interface ProjectPostProps {
-  params: Promise<{
-    slug: string
-  }>
+    params: Promise<{
+        slug: string;
+    }>;
 }
 
 export default async function ProjectPost({ params }: ProjectPostProps) {
-  const resolvedParams = await params
-  const project = await client.fetch(`*[_type == "project" && slug.current == $slug][0] {
+    const resolvedParams = await params;
+    const project = await client.fetch(
+        `*[_type == "project" && slug.current == $slug][0] {
     _id,
-    title,
+    preTitle,
+    heroTitle,
+    heroIntro,
+    heroStats[]{
+      number,
+      description
+    },
+    heroImage{
+      ...,
+      asset->{
+        _id,
+        url,
+        metadata {
+          dimensions {
+            width,
+            height
+          }
+        }
+      }
+    },
     slug,
-    description,
-    intro,
+    sections[]{
+      _key,
+      title,
+      contentBlocks[]{
+        _key,
+        headline,
+        body,
+        fullWidth
+      }
+    },
     content,
     featuredImage,
     gallery,
@@ -36,7 +64,9 @@ export default async function ProjectPost({ params }: ProjectPostProps) {
     featured,
     publishedAt,
     tags
-  }`, { slug: resolvedParams.slug })
+  }`,
+        { slug: resolvedParams.slug },
+    );
 
-  return <ProjectClient project={project} />
+    return <ProjectClient project={project} />;
 }
