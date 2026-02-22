@@ -1,49 +1,49 @@
 {
-	"name": "saririvaii",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"dev": "next dev --turbopack",
-		"build": "next build",
-		"start": "next start",
-		"lint": "next lint",
-		"export": "next build && next export",
-		"deploy": "npm run build && touch out/.nojekyll",
-		"sanity:extract": "sanity schema extract",
-		"sanity:typegen": "sanity typegen generate",
-		"sanity:codegen": "npm run sanity:extract && npm run sanity:typegen",
-		"sanity:deploy": "sanity deploy"
-	},
-	"dependencies": {
-		"@sanity/client": "^7.11.2",
-		"@sanity/image-url": "^1.2.0",
-		"@sanity/orderable-document-list": "^1.5.0",
-		"@sanity/structure": "^2.36.2",
-		"@sanity/vision": "^4.22.0",
-		"@studio-freight/lenis": "^1.0.42",
-		"@tailwindcss/typography": "^0.5.16",
-		"autoprefixer": "^10.4.21",
-		"clsx": "^2.1.1",
-		"fluid-tailwind": "^1.0.4",
-		"lucide-react": "^0.503.0",
-		"next": "15.1.4",
-		"next-sanity": "^11.6.12",
-		"react": "^19.0.0",
-		"react-dom": "^19.0.0",
-		"sanity": "^4.22.0",
-		"styled-components": "^6.3.11",
-		"tailwindcss": "^3.4.1"
-	},
-	"devDependencies": {
-		"@types/node": "^20.19.4",
-		"@types/react": "^19",
-		"@types/react-dom": "^19",
-		"eslint": "^9.30.1",
-		"eslint-config-next": "15.1.4",
-		"postcss": "^8",
-		"typescript": "^5.8.3"
-	},
-	"optionalDependencies": {
-		"@esbuild/win32-x64": "^0.25.3"
-	}
+  "name": "saririvaii",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build && next export",
+    "deploy": "npm run build && touch out/.nojekyll",
+    "sanity:extract": "sanity schema extract",
+    "sanity:typegen": "sanity typegen generate",
+    "sanity:codegen": "npm run sanity:extract && npm run sanity:typegen",
+    "sanity:deploy": "sanity deploy"
+  },
+  "dependencies": {
+    "@sanity/client": "^7.11.2",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/orderable-document-list": "^1.5.0",
+    "@sanity/structure": "^2.36.2",
+    "@sanity/vision": "^4.22.0",
+    "@studio-freight/lenis": "^1.0.42",
+    "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.21",
+    "clsx": "^2.1.1",
+    "fluid-tailwind": "^1.0.4",
+    "lucide-react": "^0.503.0",
+    "next": "15.1.11",
+    "next-sanity": "^11.6.12",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sanity": "^4.22.0",
+    "styled-components": "^6.3.11",
+    "tailwindcss": "^3.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.30.1",
+    "eslint-config-next": "15.1.4",
+    "postcss": "^8",
+    "typescript": "^5.8.3"
+  },
+  "optionalDependencies": {
+    "@esbuild/win32-x64": "^0.25.3"
+  }
 }
