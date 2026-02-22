@@ -15,6 +15,6 @@ export const structure: StructureResolver = (S, context) =>
       }),
       // Add other document types here
       ...S.documentTypeListItems().filter(
-        (listItem: { getId: () => string | null }) => !['project'].includes(listItem.getId()!)
+        (listItem) => !['project'].includes(listItem.getId()!)
       ),
     ])
