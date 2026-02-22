@@ -27,9 +27,9 @@ export default function Footer() {
     }, []);
 
     const getInTouchLinks = [
-        { label: "LinkedIn", href: "https://linkedin.com" },
-        { label: "Github", href: "https://github.com" },
-        { label: "Email", href: "mailto:hello@saririvai.com" },
+        { label: "LinkedIn", href: "https://www.linkedin.com/in/saririvai" },
+        { label: "Github", href: "https://github.com/saririvaii" },
+        { label: "Email", href: "mailto:bysaririvai@gmail.com" },
     ];
 
     const navigationLinks = [
@@ -37,7 +37,7 @@ export default function Footer() {
         { label: "Works", href: "/works" },
         { label: "About", href: "/about" },
         { label: "Playground", href: "/playground" },
-        { label: "Contact", href: "/contact" },
+        // { label: "Contact", href: "/contact" },
     ];
 
     return (

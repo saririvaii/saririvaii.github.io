@@ -8,6 +8,8 @@ import { SanityImage } from "./rich-text/SanityImage";
 import { Button } from "./rich-text/Button";
 import { ImageDescriptionCard, imageDescriptionCardItem } from "./rich-text/ImageDescriptionCard";
 import { scrollingShowcase, scrollingShowcaseItem } from "./rich-text/ScrollingShowcase";
+import { imageColumnsItem, imageColumns } from "./rich-text/ImageColumns";
+import { videoBlock } from "./rich-text/VideoBlock";
 import { richText } from "./rich-text/richTextBlock";
 import { heroStats } from "./heroStats";
 import { contentBlock } from "./contentBlock";
@@ -27,6 +29,9 @@ export const schemaTypes: SchemaTypeDefinition[] = [
     imageDescriptionCardItem,
     scrollingShowcaseItem,
     scrollingShowcase,
+    imageColumnsItem,
+    imageColumns,
+    videoBlock,
     richText,
     heroStats,
     contentBlock,

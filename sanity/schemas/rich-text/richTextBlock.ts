@@ -4,6 +4,7 @@ import { ButtonObject } from "./Button";
 import { ImageDescriptionCardObject } from "./ImageDescriptionCard";
 import { ScrollingShowcaseObject } from "./ScrollingShowcase";
 import { ImageColumnsObject } from "./ImageColumns";
+import { VideoBlockObject } from "./VideoBlock";
 
 // Define the richText type that can be reused
 export const richText = defineType({
@@ -76,6 +77,8 @@ export const richText = defineType({
         ScrollingShowcaseObject,
         // Image Columns component
         ImageColumnsObject,
+        // Video component
+        VideoBlockObject,
     ],
 });
 

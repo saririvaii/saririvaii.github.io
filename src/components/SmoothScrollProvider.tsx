@@ -21,6 +21,12 @@ export default function SmoothScrollProvider({
       return
     }
 
+    // Prevent browser from restoring scroll position on navigation
+    if (typeof window !== 'undefined') {
+      history.scrollRestoration = 'manual'
+      window.scrollTo(0, 0)
+    }
+
     const lenisInstance = new Lenis({
       duration: 1.2,
       smoothWheel: true,
