@@ -149,4 +149,10 @@ export const queries = {
       }
     }
   }`,
+
+    aboutPage: `*[_type == "aboutPage" && _id == "aboutPage"][0] {
+    title,
+    image,
+    description
+  }`,
 };

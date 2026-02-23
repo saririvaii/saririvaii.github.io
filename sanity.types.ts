@@ -13,6 +13,108 @@
  */
 
 // Source: schema.json
+export type AboutPage = {
+    _id: string;
+    _type: "aboutPage";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    }>;
+    image?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    description?: RichText;
+};
+
+export type RichText = Array<
+    | {
+          children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+          }>;
+          style?:
+              | "normal"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "footnote"
+              | "blockquote";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+              url?: string;
+              newTab?: boolean;
+              _type: "link";
+              _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+      }
+    | ({
+          _key: string;
+      } & SanityImage)
+    | ({
+          _key: string;
+      } & Button)
+    | ({
+          _key: string;
+      } & ImageDescriptionCard)
+    | ({
+          _key: string;
+      } & ScrollingShowcase)
+    | ({
+          _key: string;
+      } & ImageColumns)
+    | ({
+          _key: string;
+      } & VideoBlock)
+>;
+
+export type SanityImageCrop = {
+    _type: "sanity.imageCrop";
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+};
+
+export type SanityImageHotspot = {
+    _type: "sanity.imageHotspot";
+    x?: number;
+    y?: number;
+    height?: number;
+    width?: number;
+};
+
 export type PlaygroundPage = {
     _id: string;
     _type: "playgroundPage";
@@ -65,22 +167,6 @@ export type PlaygroundItem = {
     subtitle?: string;
     hexCode?: string;
     isBig?: boolean;
-};
-
-export type SanityImageCrop = {
-    _type: "sanity.imageCrop";
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
-};
-
-export type SanityImageHotspot = {
-    _type: "sanity.imageHotspot";
-    x?: number;
-    y?: number;
-    height?: number;
-    width?: number;
 };
 
 export type HomePage = {
@@ -147,53 +233,6 @@ export type AnimatedHeroImage = {
         } & SanityImage
     >;
 };
-
-export type RichText = Array<
-    | {
-          children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
-              _key: string;
-          }>;
-          style?:
-              | "normal"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "footnote"
-              | "blockquote";
-          listItem?: "bullet" | "number";
-          markDefs?: Array<{
-              url?: string;
-              newTab?: boolean;
-              _type: "link";
-              _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-      }
-    | ({
-          _key: string;
-      } & SanityImage)
-    | ({
-          _key: string;
-      } & Button)
-    | ({
-          _key: string;
-      } & ImageDescriptionCard)
-    | ({
-          _key: string;
-      } & ScrollingShowcase)
-    | ({
-          _key: string;
-      } & ImageColumns)
-    | ({
-          _key: string;
-      } & VideoBlock)
->;
 
 export type SkillsPage = {
     _id: string;
@@ -555,15 +594,16 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+    | AboutPage
+    | RichText
+    | SanityImageCrop
+    | SanityImageHotspot
     | PlaygroundPage
     | PlaygroundRow
     | PlaygroundItem
-    | SanityImageCrop
-    | SanityImageHotspot
     | HomePage
     | Hero
     | AnimatedHeroImage
-    | RichText
     | SkillsPage
     | SkillCategory
     | Skill

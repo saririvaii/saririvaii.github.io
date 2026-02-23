@@ -15,6 +15,7 @@ import { heroStats } from "../../sanity/schemas/heroStats";
 import { contentBlock } from "../../sanity/schemas/contentBlock";
 import { section } from "../../sanity/schemas/section";
 import { playgroundItem, playgroundRow, playgroundPage } from "../../sanity/schemas/playgroundPage";
+import { aboutPage } from "../../sanity/schemas/aboutPage";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -41,5 +42,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     playgroundItem,
     playgroundRow,
     playgroundPage,
+    aboutPage,
   ],
 };

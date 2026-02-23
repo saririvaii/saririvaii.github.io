@@ -15,6 +15,7 @@ import { heroStats } from "./heroStats";
 import { contentBlock } from "./contentBlock";
 import { section } from "./section";
 import { playgroundItem, playgroundRow, playgroundPage } from "./playgroundPage";
+import { aboutPage } from "./aboutPage";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
     project,
@@ -40,4 +41,5 @@ export const schemaTypes: SchemaTypeDefinition[] = [
     playgroundItem,
     playgroundRow,
     playgroundPage,
+    aboutPage,
 ];

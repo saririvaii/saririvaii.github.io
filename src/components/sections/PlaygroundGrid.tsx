@@ -29,8 +29,7 @@ export default function PlaygroundGrid({ rows }: PlaygroundGridProps) {
             {rows.map((row, rowIdx) => (
                 <div
                     key={row._key ?? rowIdx}
-                    className="grid grid-cols-7 gap-2 items-stretch"
-                    style={{ height: 'clamp(180px, 26vw, 380px)' }}
+                    className="grid grid-cols-1 md:grid-cols-7 gap-2 md:items-stretch md:h-[clamp(180px,26vw,380px)]"
                 >
                     {(row.items ?? []).map((item, itemIdx) => (
                         <PlaygroundItemCard key={item._key ?? itemIdx} item={item} />
@@ -51,8 +50,8 @@ function PlaygroundItemCard({ item }: { item: PlaygroundItem }) {
     return (
         <div
             className={[
-                'relative overflow-hidden rounded-lg h-full',
-                item.isBig ? 'col-span-3' : 'col-span-2',
+                'relative overflow-hidden rounded-lg aspect-square md:aspect-auto md:h-full',
+                item.isBig ? 'md:col-span-3' : 'md:col-span-2',
             ].join(' ')}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
@@ -73,7 +72,7 @@ function PlaygroundItemCard({ item }: { item: PlaygroundItem }) {
                     alt={item.title ?? ''}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 50vw, 25vw"
+                    sizes="(max-width: 768px) 100vw, 25vw"
                 />
             ) : (
                 <div className="absolute inset-0 bg-black-main/5" />
