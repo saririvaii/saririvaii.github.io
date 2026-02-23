@@ -19,8 +19,16 @@ const garamond = localFont({
 });
 
 export const metadata: Metadata = {
-    title: "Saririvaii",
-    description: "A Next.js application with Tailwind CSS",
+    title: "Sari Rivai | Product Designer & Web Developer",
+    description: "Sari Rivai is a Melbourne-based product designer and developer specialising in accessibility-driven, system-level digital experiences. She partners closely with engineering to ship performant, scalable products grounded in research, clarity, and long-term maintainability.",
+    keywords: ["Product Designer", "Web Developer", "Melbourne", "Australia", "Design", "Development", "UI/UX", "Frontend", "Backend", "Full Stack", "Portfolio", "Resume", "About", "Contact", "Accessibility", "System-Level", "Digital Experiences", "Research", "Clarity", "Long-term Maintainability"],
+    authors: [{ name: "Sari Rivai", url: "https://saririvai.vercel.app" }],
+    creator: "Sari Rivai",
+    publisher: "Sari Rivai",
+    openGraph: {
+        title: "Sari Rivai | Product Designer & Web Developer",
+        description: "Sari Rivai is a Melbourne-based product designer and developer specialising in accessibility-driven, system-level digital experiences. She partners closely with engineering to ship performant, scalable products grounded in research, clarity, and long-term maintainability.",
+    },
 };
 
 export default function RootLayout({
