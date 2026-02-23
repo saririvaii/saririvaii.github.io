@@ -15,7 +15,7 @@ export default async function AboutPage() {
             <div className="flex flex-col items-center gap-12 py-24 px-4">
                 {/* Title */}
                 {page.title && (
-                    <div className="w-[95vw] md:max-w-[70vw] text-center pt-24">
+                    <div className="w-[80vw] md:max-w-[70vw] text-center pt-24">
                         <RichTextBlock
                             value={page.title}
                             elementClassNames={{
@@ -29,7 +29,7 @@ export default async function AboutPage() {
 
                 {/* Image */}
                 {page.image && (
-                    <div className="w-[95vw] md:w-[50vw]">
+                    <div className="w-[80vw] md:w-[50vw]">
                         <CMSImage
                             image={page.image}
                             className="w-full h-auto rounded-2xl"
@@ -40,7 +40,7 @@ export default async function AboutPage() {
 
                 {/* Description */}
                 {page.description && (
-                    <div className="w-[95vw] md:w-[50vw] text-center pt-6">
+                    <div className="w-[80vw] md:w-[50vw] text-center pt-6">
                         <RichTextBlock 
                             value={page.description} 
                         />

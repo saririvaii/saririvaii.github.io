@@ -35,8 +35,8 @@ export default function Footer() {
     const navigationLinks = [
         { label: "Home", href: "/" },
         { label: "Works", href: "/works" },
-        { label: "About", href: "/about" },
         { label: "Playground", href: "/playground" },
+        { label: "About", href: "/about" },
         // { label: "Contact", href: "/contact" },
     ];
 
@@ -111,7 +111,7 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-white/60 text-xs md:text-sm font-sans">
                     {/* Bottom-left: Copyright */}
                     <div className="order-1 md:order-none text-button">
-                        All rights reserved © 2025
+                        All rights reserved © 2026
                     </div>
 
                     {/* Bottom-center: Time */}
