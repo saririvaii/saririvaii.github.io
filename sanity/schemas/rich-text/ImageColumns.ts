@@ -19,6 +19,13 @@ export const imageColumnsItem = defineType({
                 },
             ],
         }),
+        defineField({
+            name: "video",
+            title: "Video (MP4)",
+            type: "file",
+            options: { accept: "video/mp4" },
+            description: "Upload a video instead of an image",
+        }),
     ],
     preview: {
         select: {

@@ -87,7 +87,15 @@ export const project = defineType({
                 },
             ],
         }),
-        
+        defineField({
+            group: "hero",
+            name: "heroVideo",
+            title: "Hero Video (MP4)",
+            type: "file",
+            options: { accept: "video/mp4" },
+            description: "Upload a video to use instead of the hero image",
+        }),
+
         defineField({
             group: "content",
             name: "sections",

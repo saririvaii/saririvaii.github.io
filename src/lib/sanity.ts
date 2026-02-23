@@ -17,10 +17,10 @@ export function urlFor(source: any) {
 // GROQ Queries
 export const queries = {
     // Home page queries
-    homePage: `*[_type == "homePage"][0]`,
+    homePage: `*[_type == "homePage" && _id == "homePage"][0]`,
 
     // Hero queries (from home page)
-    hero: `*[_type == "homePage"][0].hero{
+    hero: `*[_type == "homePage" && _id == "homePage"][0].hero{
     title,
     description,
     primaryButton,
@@ -124,10 +124,35 @@ export const queries = {
   }`,
 
     // Skills queries (from skills page)
-    skills: `*[_type == "skillsPage"][0].categories[]{
+    skills: `*[_type == "skillsPage" && _id == "skillsPage"][0].categories[]{
     name,
     skills
   }`,
 
-    skillsPage: `*[_type == "skillsPage"][0]`,
+    skillsPage: `*[_type == "skillsPage" && _id == "skillsPage"][0]`,
+
+    playgroundPage: `*[_type == "playgroundPage" && _id == "playgroundPage"][0] {
+    title,
+    description,
+    rows[]{
+      _key,
+      items[]{
+        _key,
+        title,
+        subtitle,
+        hexCode,
+        isBig,
+        image,
+        video{
+          asset->{ url }
+        }
+      }
+    }
+  }`,
+
+    aboutPage: `*[_type == "aboutPage" && _id == "aboutPage"][0] {
+    title,
+    image,
+    description
+  }`,
 };

@@ -29,7 +29,7 @@ export default async function WorksPage() {
     return (
         <main className="pt-24">
             <section className="default-section">
-                <h1 className="text-section-title text-center text-black-main font-sans tracking-tight mb-4 md:mb-0">
+                <h1 className="text-section-title text-[10vw] md:text-[8vw] lg:text-[5vw] text-center text-black-main font-sans tracking-tight mb-4 md:mb-6">
                     Works I&apos;m proud of.
                 </h1>
                 <div className="space-y-10 md:space-y-16">

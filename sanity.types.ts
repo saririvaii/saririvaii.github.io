@@ -13,6 +13,162 @@
  */
 
 // Source: schema.json
+export type AboutPage = {
+    _id: string;
+    _type: "aboutPage";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: Array<{
+        children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+    }>;
+    image?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    description?: RichText;
+};
+
+export type RichText = Array<
+    | {
+          children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+          }>;
+          style?:
+              | "normal"
+              | "h1"
+              | "h2"
+              | "h3"
+              | "h4"
+              | "footnote"
+              | "blockquote";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+              url?: string;
+              newTab?: boolean;
+              _type: "link";
+              _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+      }
+    | ({
+          _key: string;
+      } & SanityImage)
+    | ({
+          _key: string;
+      } & Button)
+    | ({
+          _key: string;
+      } & ImageDescriptionCard)
+    | ({
+          _key: string;
+      } & ScrollingShowcase)
+    | ({
+          _key: string;
+      } & ImageColumns)
+    | ({
+          _key: string;
+      } & VideoBlock)
+>;
+
+export type SanityImageCrop = {
+    _type: "sanity.imageCrop";
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+};
+
+export type SanityImageHotspot = {
+    _type: "sanity.imageHotspot";
+    x?: number;
+    y?: number;
+    height?: number;
+    width?: number;
+};
+
+export type PlaygroundPage = {
+    _id: string;
+    _type: "playgroundPage";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    description?: string;
+    rows?: Array<
+        {
+            _key: string;
+        } & PlaygroundRow
+    >;
+};
+
+export type PlaygroundRow = {
+    _type: "playgroundRow";
+    items?: Array<
+        {
+            _key: string;
+        } & PlaygroundItem
+    >;
+};
+
+export type PlaygroundItem = {
+    _type: "playgroundItem";
+    image?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    video?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        media?: unknown;
+        _type: "file";
+    };
+    title?: string;
+    subtitle?: string;
+    hexCode?: string;
+    isBig?: boolean;
+};
+
 export type HomePage = {
     _id: string;
     _type: "homePage";
@@ -78,69 +234,6 @@ export type AnimatedHeroImage = {
     >;
 };
 
-export type SanityImageCrop = {
-    _type: "sanity.imageCrop";
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
-};
-
-export type SanityImageHotspot = {
-    _type: "sanity.imageHotspot";
-    x?: number;
-    y?: number;
-    height?: number;
-    width?: number;
-};
-
-export type RichText = Array<
-    | {
-          children?: Array<{
-              marks?: Array<string>;
-              text?: string;
-              _type: "span";
-              _key: string;
-          }>;
-          style?:
-              | "normal"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "footnote"
-              | "blockquote";
-          listItem?: "bullet" | "number";
-          markDefs?: Array<{
-              url?: string;
-              newTab?: boolean;
-              _type: "link";
-              _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-      }
-    | ({
-          _key: string;
-      } & SanityImage)
-    | ({
-          _key: string;
-      } & Button)
-    | ({
-          _key: string;
-      } & ImageDescriptionCard)
-    | ({
-          _key: string;
-      } & ScrollingShowcase)
-    | ({
-          _key: string;
-      } & ImageColumns)
-    | ({
-          _key: string;
-      } & VideoBlock)
->;
-
 export type SkillsPage = {
     _id: string;
     _type: "skillsPage";
@@ -200,6 +293,16 @@ export type Project = {
         crop?: SanityImageCrop;
         alt?: string;
         _type: "image";
+    };
+    heroVideo?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        media?: unknown;
+        _type: "file";
     };
     sections?: Array<
         {
@@ -318,6 +421,16 @@ export type ImageColumnsItem = {
         crop?: SanityImageCrop;
         alt?: string;
         _type: "image";
+    };
+    video?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        media?: unknown;
+        _type: "file";
     };
 };
 
@@ -481,12 +594,16 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+    | AboutPage
+    | RichText
+    | SanityImageCrop
+    | SanityImageHotspot
+    | PlaygroundPage
+    | PlaygroundRow
+    | PlaygroundItem
     | HomePage
     | Hero
     | AnimatedHeroImage
-    | SanityImageCrop
-    | SanityImageHotspot
-    | RichText
     | SkillsPage
     | SkillCategory
     | Skill

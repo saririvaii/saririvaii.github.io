@@ -22,8 +22,9 @@ interface ProjectPostProps {
 
 export default async function ProjectPost({ params }: ProjectPostProps) {
     const resolvedParams = await params;
-    const project = await client.fetch(
-        `*[_type == "project" && slug.current == $slug][0] {
+    const [project, allProjects] = await Promise.all([
+        client.fetch(
+            `*[_type == "project" && slug.current == $slug][0] {
     _id,
     preTitle,
     heroTitle,
@@ -45,6 +46,11 @@ export default async function ProjectPost({ params }: ProjectPostProps) {
         }
       }
     },
+    heroVideo {
+      asset-> {
+        url
+      }
+    },
     slug,
     sections[]{
       _key,
@@ -60,6 +66,18 @@ export default async function ProjectPost({ params }: ProjectPostProps) {
               ...,
               asset-> {
                 url
+              }
+            }
+          },
+          _type == "imageColumns" => {
+            ...,
+            images[]{
+              ...,
+              video {
+                ...,
+                asset-> {
+                  url
+                }
               }
             }
           }
@@ -78,8 +96,20 @@ export default async function ProjectPost({ params }: ProjectPostProps) {
     publishedAt,
     tags
   }`,
-        { slug: resolvedParams.slug },
-    );
+            { slug: resolvedParams.slug },
+        ),
+        client.fetch(
+            `*[_type == "project"] | order(orderRank asc) {
+    heroTitle,
+    "slug": slug.current,
+    featuredImage
+  }`,
+        ),
+    ]);
 
-    return <ProjectClient project={project} />;
+    // Find next project (wrap around)
+    const currentIndex = allProjects.findIndex((p: any) => p.slug === resolvedParams.slug);
+    const nextProject = allProjects[(currentIndex + 1) % allProjects.length] ?? null;
+
+    return <ProjectClient project={project} nextProject={nextProject} />;
 }

@@ -14,6 +14,8 @@ import { richText } from "./rich-text/richTextBlock";
 import { heroStats } from "./heroStats";
 import { contentBlock } from "./contentBlock";
 import { section } from "./section";
+import { playgroundItem, playgroundRow, playgroundPage } from "./playgroundPage";
+import { aboutPage } from "./aboutPage";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
     project,
@@ -36,4 +38,8 @@ export const schemaTypes: SchemaTypeDefinition[] = [
     heroStats,
     contentBlock,
     section,
+    playgroundItem,
+    playgroundRow,
+    playgroundPage,
+    aboutPage,
 ];
