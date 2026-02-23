@@ -13,6 +13,76 @@
  */
 
 // Source: schema.json
+export type PlaygroundPage = {
+    _id: string;
+    _type: "playgroundPage";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    description?: string;
+    rows?: Array<
+        {
+            _key: string;
+        } & PlaygroundRow
+    >;
+};
+
+export type PlaygroundRow = {
+    _type: "playgroundRow";
+    items?: Array<
+        {
+            _key: string;
+        } & PlaygroundItem
+    >;
+};
+
+export type PlaygroundItem = {
+    _type: "playgroundItem";
+    image?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+    };
+    video?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        media?: unknown;
+        _type: "file";
+    };
+    title?: string;
+    subtitle?: string;
+    hexCode?: string;
+    isBig?: boolean;
+};
+
+export type SanityImageCrop = {
+    _type: "sanity.imageCrop";
+    top?: number;
+    bottom?: number;
+    left?: number;
+    right?: number;
+};
+
+export type SanityImageHotspot = {
+    _type: "sanity.imageHotspot";
+    x?: number;
+    y?: number;
+    height?: number;
+    width?: number;
+};
+
 export type HomePage = {
     _id: string;
     _type: "homePage";
@@ -76,22 +146,6 @@ export type AnimatedHeroImage = {
             _key: string;
         } & SanityImage
     >;
-};
-
-export type SanityImageCrop = {
-    _type: "sanity.imageCrop";
-    top?: number;
-    bottom?: number;
-    left?: number;
-    right?: number;
-};
-
-export type SanityImageHotspot = {
-    _type: "sanity.imageHotspot";
-    x?: number;
-    y?: number;
-    height?: number;
-    width?: number;
 };
 
 export type RichText = Array<
@@ -200,6 +254,16 @@ export type Project = {
         crop?: SanityImageCrop;
         alt?: string;
         _type: "image";
+    };
+    heroVideo?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        media?: unknown;
+        _type: "file";
     };
     sections?: Array<
         {
@@ -318,6 +382,16 @@ export type ImageColumnsItem = {
         crop?: SanityImageCrop;
         alt?: string;
         _type: "image";
+    };
+    video?: {
+        asset?: {
+            _ref: string;
+            _type: "reference";
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+        };
+        media?: unknown;
+        _type: "file";
     };
 };
 
@@ -481,11 +555,14 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+    | PlaygroundPage
+    | PlaygroundRow
+    | PlaygroundItem
+    | SanityImageCrop
+    | SanityImageHotspot
     | HomePage
     | Hero
     | AnimatedHeroImage
-    | SanityImageCrop
-    | SanityImageHotspot
     | RichText
     | SkillsPage
     | SkillCategory

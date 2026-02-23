@@ -1,6 +1,8 @@
 import type {StructureResolver} from 'sanity/structure'
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list'
 
+const singletonTypes = ['homePage', 'playgroundPage', 'skillsPage']
+
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S, context) =>
   S.list()
@@ -13,8 +15,23 @@ export const structure: StructureResolver = (S, context) =>
         S,
         context,
       }),
-      // Add other document types here
+      S.divider(),
+      // Singleton pages — only one instance allowed
+      S.listItem()
+        .title('Home Page')
+        .id('homePage')
+        .child(S.document().schemaType('homePage').documentId('homePage')),
+      S.listItem()
+        .title('Playground Page')
+        .id('playgroundPage')
+        .child(S.document().schemaType('playgroundPage').documentId('playgroundPage')),
+      S.listItem()
+        .title('Skills Page')
+        .id('skillsPage')
+        .child(S.document().schemaType('skillsPage').documentId('skillsPage')),
+      S.divider(),
+      // All other document types (excluding singletons and projects)
       ...S.documentTypeListItems().filter(
-        (listItem) => !['project'].includes(listItem.getId()!)
+        (listItem) => !['project', ...singletonTypes].includes(listItem.getId()!)
       ),
     ])

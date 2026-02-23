@@ -1,7 +1,7 @@
 'use client'
 
 import CMSImage from '@/components/ui/richTextComponents/CMSImage'
-import { HeroStats, Project } from 'sanity.types'
+import { Project } from 'sanity.types'
 
 interface CaseStudyHeroProps {
   preTitle?: string
@@ -12,6 +12,7 @@ interface CaseStudyHeroProps {
     label: string
   }>
   heroImage?: Project['heroImage']
+  heroVideo?: string
 }
 
 export default function CaseStudyHero({
@@ -20,6 +21,7 @@ export default function CaseStudyHero({
   description,
   stats = [],
   heroImage,
+  heroVideo,
 }: CaseStudyHeroProps) {
   return (
     <section className="default-section">
@@ -69,10 +71,19 @@ export default function CaseStudyHero({
                 </div>
             )}
         </div>
-        {/* Hero image card */}
-        {heroImage && heroImage.asset && (
-                <div className="col-span-4">
-                <div className="overflow-hidden rounded-2xl bg-black-main/5">
+        {/* Hero media card */}
+        {(heroVideo || (heroImage && heroImage.asset)) && (
+            <div className="overflow-hidden rounded-2xl bg-black-main/5 aspect-video">
+                {heroVideo ? (
+                    <video
+                        src={heroVideo}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-cover"
+                    />
+                ) : (
                     <CMSImage
                         image={heroImage}
                         width={1920}
@@ -80,7 +91,7 @@ export default function CaseStudyHero({
                         className="w-full h-full object-cover object-center"
                         priority
                     />
-                </div>
+                )}
             </div>
         )}
     </section>

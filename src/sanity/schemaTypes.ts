@@ -14,6 +14,7 @@ import { richText } from "../../sanity/schemas/rich-text/richTextBlock";
 import { heroStats } from "../../sanity/schemas/heroStats";
 import { contentBlock } from "../../sanity/schemas/contentBlock";
 import { section } from "../../sanity/schemas/section";
+import { playgroundItem, playgroundRow, playgroundPage } from "../../sanity/schemas/playgroundPage";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -37,5 +38,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     hero,
     animatedHeroImage,
     homePage,
+    playgroundItem,
+    playgroundRow,
+    playgroundPage,
   ],
 };
